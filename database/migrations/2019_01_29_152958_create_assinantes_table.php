@@ -16,10 +16,11 @@ class CreateAssinantesTable extends Migration
         Schema::create('assinantes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome', 50);
+            $table->string('email',60);
             $table->string('senha', 60);
             $table->string('confirma_senha', 60);
             $table->string('cpf', 14);
-            $table->string('sexo', 1);
+            $table->char('sexo', 1);
             $table->date('data_nascimento');
             $table->string('cep', 9);
             $table->string('tipo_logradouro', 10);
@@ -27,9 +28,10 @@ class CreateAssinantesTable extends Migration
             $table->string('numero', 6);
             $table->string('complemento', 20)->nullable();
             $table->string('bairro', 60);
+            $table->char('estado',2);
             $table->string('telefone', 15);
             $table->string('interesses', 250);
-            $table->string('aceita_receber_informacoes', 1);
+            $table->boolean('aceita_receber_informacoes');
             $table->text('outras_informacoes', 500)->nullable();
             $table->timestamps();
         });
