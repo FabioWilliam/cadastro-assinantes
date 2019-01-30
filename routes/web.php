@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'assinantes');
+Route::resource('assinantes', 'AssinanteController');
