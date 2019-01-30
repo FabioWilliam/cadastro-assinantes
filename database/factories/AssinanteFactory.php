@@ -12,14 +12,16 @@ $factory->define(App\Assinante::class, function () use ($faker) {
     $secondaryAddress = $faker->secondaryAddress();
     $text = $faker->text(500);
     $numero = $faker->buildingNumber;
+    $sexo = $faker->randomElement(['M', 'F']);
+    $firstname = ($sexo == 'F') ? $faker->firstNameFemale : $faker->firstNameMale;
 
     return [
-        'nome' => $faker->firstName.' '.$faker->lastName,
+        'nome' => $firstname.' '.$faker->lastName,
         'email' => $faker->safeEmail,
         'senha' => $password,
         'confirma_senha' => $password,
         'cpf' => $faker->cpf,
-        'sexo'=> $faker->randomElement(['M', 'F']),
+        'sexo'=> $sexo,
         'data_nascimento' => $faker->date(),
         'cep' => $faker->postcode,
         'tipo_logradouro' => $faker->streetPrefix,
