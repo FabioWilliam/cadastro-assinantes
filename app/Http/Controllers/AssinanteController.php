@@ -28,7 +28,7 @@ class AssinanteController extends Controller
      */
     public function create()
     {
-        //
+        return view('assinante.create');
     }
 
     /**
@@ -39,7 +39,7 @@ class AssinanteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -50,7 +50,8 @@ class AssinanteController extends Controller
      */
     public function show(Assinante $assinante)
     {
-        //
+        dd($assinante);
+        return 'Mostra o Assinante';
     }
 
     /**
@@ -61,7 +62,7 @@ class AssinanteController extends Controller
      */
     public function edit(Assinante $assinante)
     {
-        //
+        return 'Edita o Assinante';
     }
 
     /**
@@ -84,6 +85,6 @@ class AssinanteController extends Controller
      */
     public function destroy(Assinante $assinante)
     {
-        //
+        return 'Destroy o Assinante';
     }
 }

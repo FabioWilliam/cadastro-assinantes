@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Lista de Assinantes</h1>
+    <h1 class="mb-3">Lista de Assinantes</h1>
+
+    <div class="actions mb-3">
+        <a href="{{ route('assinantes.create') }}" class="btn btn-primary">Criar Assinante</a>
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -22,9 +26,9 @@
                 <td>{{ $assinante->telefone }}</td>
                 <td>{{ $assinante->cpf }}</td>
                 <td>
-                    <a href="#">visualizar</a> |
-                    <a href="#">editar</a> |
-                    <a href="#">apagar</a>
+                    <a href="{{ route('assinantes.show', ['id' => $assinante->id]) }}">visualizar</a> |
+                    <a href="{{ route('assinantes.edit', ['id' => $assinante->id]) }}">editar</a> |
+                    <a href="{{ route('assinantes.destroy', ['id' => $assinante->id]) }}">apagar</a>
                 </td>
             </tr>
             @endforeach
