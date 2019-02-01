@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Assinante;
 use Illuminate\Http\Request;
+use App\Rules\Cep;
+use App\Rules\Cpf;
+use App\Rules\DataNascimento;
+use App\Rules\Numero;
+use App\Rules\Telefone;
 
 class AssinanteController extends Controller
 {
@@ -44,19 +49,19 @@ class AssinanteController extends Controller
             'email' => 'required|email|max:60',
             'senha' => 'required|max:60',
             'confirma_senha' => 'required|same:senha|max:60',
-            'cpf' => 'required|max:14',
+            'cpf' => ['required','max:14', new Cpf],
             'sexo' => 'required|in:"M","F"',
-            'data_nascimento' => 'required|max:10',
-            'cep' => 'required|max:9',
+            'data_nascimento' => ['required', 'max:10', new DataNascimento],
+            'cep' => ['required', 'max:9', new Cep],
             'tipo_logradouro' => 'required|in:"R","AV","AL","Q","RES","OUTROS"',
             'logradouro' => 'required|max:60',
-            'numero' => 'required|max:6',
+            'numero' => ['required', 'max:6', new Numero],
             'complemento' => 'nullable|max:60',
             'bairro' => 'required|max:60',
             'cidade' => 'required|max:60',
             'estado' => 'required|max:2',
-            'telefone' => 'required|max:15',
-            'interesses' => 'required|array',
+            'telefone' => ['required', 'max:15', new Telefone],
+            'interesses' => 'required|array|min:3',
             'outras_informacoes' => 'nullable|max:500',
         ]);
 
