@@ -28,10 +28,11 @@ class CreateAssinantesTable extends Migration
             $table->string('numero', 6);
             $table->string('complemento', 20)->nullable();
             $table->string('bairro', 60);
-            $table->char('estado',2);
+            $table->string('cidade', 60);
+            $table->char('estado', 2);
             $table->string('telefone', 15);
             $table->string('interesses', 250);
-            $table->boolean('aceita_receber_informacoes');
+            $table->boolean('aceita_receber_informacoes')->default(false);
             $table->text('outras_informacoes', 500)->nullable();
             $table->timestamps();
         });

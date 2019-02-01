@@ -3,6 +3,12 @@
 @section('content')
     <h1 class="mb-3">Lista de Assinantes</h1>
 
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <div class="actions mb-3">
         <a href="{{ route('assinantes.create') }}" class="btn btn-primary">Criar Assinante</a>
     </div>

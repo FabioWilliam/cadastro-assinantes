@@ -14,7 +14,7 @@ class AssinanteController extends Controller
      */
     public function index()
     {
-        $assinantes = Assinante::all();
+        $assinantes = Assinante::orderBy('id', 'DESC')->get();
 
         return view('assinante.index', [
             'assinantes' => $assinantes
@@ -39,7 +39,32 @@ class AssinanteController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $validatedData = $request->validate([
+            'nome' => 'required|max:50',
+            'email' => 'required|email|max:60',
+            'senha' => 'required|max:60',
+            'confirma_senha' => 'required|same:senha|max:60',
+            'cpf' => 'required|max:14',
+            'sexo' => 'required|in:"M","F"',
+            'data_nascimento' => 'required|max:10',
+            'cep' => 'required|max:9',
+            'tipo_logradouro' => 'required|in:"R","AV","AL","Q","RES","OUTROS"',
+            'logradouro' => 'required|max:60',
+            'numero' => 'required|max:6',
+            'complemento' => 'nullable|max:60',
+            'bairro' => 'required|max:60',
+            'cidade' => 'required|max:60',
+            'estado' => 'required|max:2',
+            'telefone' => 'required|max:15',
+            'interesses' => 'required|array',
+            'outras_informacoes' => 'nullable|max:500',
+        ]);
+
+        $assinante = Assinante::create($request->all());
+
+        return redirect()
+            ->route('assinantes.index')
+            ->with('message', 'O assinante ' . $assinante->nome . ' foi incluído com sucesso! ');
     }
 
     /**
