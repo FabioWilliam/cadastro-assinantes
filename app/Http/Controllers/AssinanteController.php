@@ -86,7 +86,16 @@ class AssinanteController extends Controller
      */
     public function edit(Assinante $assinante)
     {
-        return 'Edita o Assinante';
+        $interessesList = $this->listasRepository->getInteressesList();
+        $estadosList = $this->listasRepository->getEstadosList();
+        $tipoLogradouroList = $this->listasRepository->getTipoLogradouroList();
+
+        return view('assinante.edit', [
+            'interesses' => $interessesList,
+            'estados' => $estadosList,
+            'tipos_logradouro' => $tipoLogradouroList,
+            'assinante' => $assinante,
+        ]);
     }
 
     /**
@@ -96,9 +105,11 @@ class AssinanteController extends Controller
      * @param  \App\Assinante  $assinante
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Assinante $assinante)
+    public function update(StoreAssinanteRequest $request, Assinante $assinante)
     {
-        //
+        return('estou no método update');
+        var_dump($assinante);
+        var_dump($request);
     }
 
     /**

@@ -9,6 +9,17 @@
         .table th, .table td {
             text-align: center;
         }
+
+        form {
+            margin: 0 auto;
+            width: 800px;
+        }
+
+        .row {
+            border-bottom: 1px solid #e1e1e1!important;
+            padding-bottom: 15px;
+        }
+
     </style>
     <title>Sistema de Assinantes</title>
 </head>
