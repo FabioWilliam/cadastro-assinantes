@@ -23,7 +23,7 @@ class AssinanteController extends Controller
      */
     public function index()
     {
-        $assinantes = Assinante::orderBy('id', 'DESC')->get();
+        $assinantes = Assinante::orderBy('id', 'DESC')->paginate(10);
 
         return view('assinante.index', [
             'assinantes' => $assinantes
