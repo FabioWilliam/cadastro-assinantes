@@ -38,9 +38,13 @@ class AssinanteController extends Controller
     public function create()
     {
         $interessesList = $this->listasRepository->getInteressesList();
+        $estadosList = $this->listasRepository->getEstadosList();
+        $tipoLogradouroList = $this->listasRepository->getTipoLogradouroList();
 
         return view('assinante.create', [
-            'interesses' => $interessesList
+            'interesses' => $interessesList,
+            'estados' => $estadosList,
+            'tipos_logradouro' => $tipoLogradouroList,
         ]);
     }
 
