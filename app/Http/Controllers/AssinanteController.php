@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Assinante;
 use Illuminate\Http\Request;
-use App\Rules\Cep;
-use App\Rules\Cpf;
-use App\Rules\DataNascimento;
-use App\Rules\Numero;
-use App\Rules\Telefone;
+use App\Repository\ListasRepository;
+use App\Http\Requests\StoreAssinanteRequest;
 
 class AssinanteController extends Controller
 {
+    private $listasRepository;
+
+    public function __construct()
+    {
+        $this->listasRepository = new ListasRepository();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +37,11 @@ class AssinanteController extends Controller
      */
     public function create()
     {
-        return view('assinante.create');
+        $interessesList = $this->listasRepository->getInteressesList();
+
+        return view('assinante.create', [
+            'interesses' => $interessesList
+        ]);
     }
 
     /**
@@ -42,33 +50,15 @@ class AssinanteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAssinanteRequest $request)
     {
-        $validatedData = $request->validate([
-            'nome' => 'required|max:50',
-            'email' => 'required|email|max:60',
-            'senha' => 'required|max:60',
-            'confirma_senha' => 'required|same:senha|max:60',
-            'cpf' => ['required','max:14', new Cpf],
-            'sexo' => 'required|in:"M","F"',
-            'data_nascimento' => ['required', 'max:10', new DataNascimento],
-            'cep' => ['required', 'max:9', new Cep],
-            'tipo_logradouro' => 'required|in:"R","AV","AL","Q","RES","OUTROS"',
-            'logradouro' => 'required|max:60',
-            'numero' => ['required', 'max:6', new Numero],
-            'complemento' => 'nullable|max:60',
-            'bairro' => 'required|max:60',
-            'cidade' => 'required|max:60',
-            'estado' => 'required|max:2',
-            'telefone' => ['required', 'max:15', new Telefone],
-            'interesses' => 'required|array|min:3',
-            'outras_informacoes' => 'nullable|max:500',
-        ]);
+        $validated = $request->validated();
 
         $assinante = Assinante::create($request->all());
 
         return redirect()
             ->route('assinantes.index')
+            ->withInput()
             ->with('message', 'O assinante ' . $assinante->nome . ' foi incluído com sucesso! ');
     }
 
