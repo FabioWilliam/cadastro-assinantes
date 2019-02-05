@@ -16,7 +16,7 @@ $factory->define(App\Assinante::class, function () use ($faker) {
     $firstname = ($sexo == 'F') ? $faker->firstNameFemale : $faker->firstNameMale;
 
     return [
-        'nome' => $firstname.' '.$faker->lastName,
+        'nome' => $firstname . ' ' . $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'senha' => $password,
         'confirma_senha' => $password,
@@ -24,16 +24,16 @@ $factory->define(App\Assinante::class, function () use ($faker) {
         'sexo'=> $sexo,
         'data_nascimento' => $faker->date('d/m/Y'),
         'cep' => $faker->postcode,
-        'tipo_logradouro' => $faker->streetPrefix,
+        'tipo_logradouro' => $faker->randomElement(['R', 'AV', 'AL', 'Q', 'RES', 'OUTROS']),
         'logradouro' => $faker->streetName,
-        'numero' => $faker->randomElement([$numero,$numero,$numero,'SN']),
-        'complemento' => $faker->randomElement([$secondaryAddress,null]),
+        'numero' => $faker->randomElement([$numero, $numero, $numero, 'SN']),
+        'complemento' => $faker->randomElement([$secondaryAddress, null]),
         'bairro' => $faker->randomElement(['Cocaia', 'Sadokin', 'Lauzanne', 'Lapa', 'Perdizes', 'Barra Funda', 'Interlagos', 'Alphaville', 'Cerqueira César']),
         'cidade' => $faker->city,
         'telefone' => $faker->cellphoneNumber,
         'interesses' => $chosenInteresses,
         'estado' => $faker->stateAbbr(),
-        'aceita_receber_informacoes' => $faker->randomElement([true,false]),
-        'outras_informacoes' => $faker->randomElement([$text,null]),
+        'aceita_receber_informacoes' => $faker->randomElement([true, false]),
+        'outras_informacoes' => $faker->randomElement([$text, null]),
     ];
 });

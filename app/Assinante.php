@@ -19,6 +19,13 @@ class Assinante extends Model
         return explode(',', $value);
     }
 
+    public function getDataNascimentoAttribute($value)
+    {
+        $date = \DateTime::createFromFormat('Y-m-d', $value);
+        $dateString = $date->format('d/m/Y');
+        return $dateString;
+    }
+
     public function setDataNascimentoAttribute($value)
     {
         $date = \DateTime::createFromFormat('d/m/Y', $value);

@@ -26,7 +26,7 @@ return [
     ],
     'required' => 'O :attribute é um campo de preenchimento obrigatório.',
     'same' => 'Os campos :attribute e :other devem ser iguais.',
-    'unique' => 'The :attribute has already been taken.',
+    'unique' => 'O valor do campo :attribute já foi utilizado.',
 
     /*
     |--------------------------------------------------------------------------

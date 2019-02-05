@@ -32,12 +32,12 @@
     <label for="sexo" class="col-4 col-form-label">Sexo</label>
     <div class="col-6">
         <div class="form-check">
-            <input type="radio" name="sexo" id="masculino" value="M" class="form-check-input">
+            <input type="radio" name="sexo" id="masculino" value="M" class="form-check-input" {{ old('sexo', $assinante->sexo ?? '') == 'M' ? 'checked' : '' }}>
             <label for="masculino" class="form-check-label">Masculino</label>
         </div>
 
         <div class="form-check">
-            <input type="radio" name="sexo" id="feminino" value="F" class="form-check-input">
+            <input type="radio" name="sexo" id="feminino" value="F" class="form-check-input" {{ old('sexo', $assinante->sexo ?? '') == 'F' ? 'checked' : '' }}>
             <label for="feminino" class="form-check-label">Feminino</label>
         </div>
     </div>
@@ -60,7 +60,7 @@
             <select name="tipo_logradouro" id="tipo_logradouro" class="form-control">
             <option value="">Selecione</option>
             @foreach ($tipos_logradouro as $key => $tipo_logradouro)
-                <option value="{{ $key }}" {{ $key == old('tipo_logradouro') ? 'selected' : '' }}>
+                <option value="{{ $key }}" {{ $key == old('tipo_logradouro', $assinante->tipo_logradouro ?? '') ? 'selected' : '' }}>
                 {{ $tipo_logradouro }}
                 </option>
             @endforeach
@@ -100,7 +100,7 @@
         <select name="estado" id="estado" class="form-control">
             <option value="">Selecione</option>
             @foreach ($estados as $key => $estado)
-                <option value="{{ $key }}" {{ $key == old('estado') ? 'selected' : '' }}>
+                <option value="{{ $key }}" {{ $key == old('estado', $assinante->estado ?? '') ? 'selected' : '' }}>
                     {{ $estado }}
                 </option>
             @endforeach
@@ -118,7 +118,7 @@
     <div class="col-5">
         <select name="interesses[]" id="interesses" class="form-control" multiple>
             @foreach ($interesses as $key => $value)
-                <option value="{{ $key }}" {{ in_array($key, old('interesses', [])) ? 'selected' : '' }}>
+                <option value="{{ $key }}" {{ in_array($key, old('interesses', $assinante->interesses ?? [])) ? 'selected' : '' }}>
                     {{ $value }}
                 </option>
             @endforeach
@@ -130,7 +130,7 @@
     <div class="col-6">
         <div class="form-check" style="padding-top: 8px">
             <input type="checkbox" name="aceita_receber_informacoes" id="aceita_receber_informacoes" value="1"
-                {{ old('aceita_receber_informacoes') == '1' ? 'checked' : ''}} class="form-check-input">
+                {{ old('aceita_receber_informacoes', $assinante->aceita_receber_informacoes ?? '') == '1' ? 'checked' : ''}} class="form-check-input">
         </div>
     </div>
 </div>
