@@ -30,7 +30,7 @@ class StoreAssinanteRequest extends FormRequest
     {
         return [
             'nome' => 'required|max:50',
-            'email' => 'required|email|max:60',
+            'email' => 'required|email|unique|max:60',
             'senha' => 'required|max:60',
             'confirma_senha' => 'required|same:senha|max:60',
             'cpf' => ['required','max:14', new Cpf],

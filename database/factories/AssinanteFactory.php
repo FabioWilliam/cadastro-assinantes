@@ -17,7 +17,7 @@ $factory->define(App\Assinante::class, function () use ($faker) {
 
     return [
         'nome' => $firstname.' '.$faker->lastName,
-        'email' => $faker->safeEmail,
+        'email' => $faker->unique()->safeEmail,
         'senha' => $password,
         'confirma_senha' => $password,
         'cpf' => $faker->cpf,

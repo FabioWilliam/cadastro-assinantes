@@ -16,7 +16,7 @@ class CreateAssinantesTable extends Migration
         Schema::create('assinantes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome', 50);
-            $table->string('email',60);
+            $table->string('email',60)->unique()->index();
             $table->string('senha', 60);
             $table->string('confirma_senha', 60);
             $table->string('cpf', 14);
