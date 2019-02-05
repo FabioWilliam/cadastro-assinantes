@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Novo Assinante</h1>
+    <h1 class="h2 mb-2">Novo Assinante</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">

@@ -10,8 +10,11 @@
 * (OK) Alterar a factory para adicionar os tipos de logradouro corretos
 * (OK) Trazer o valor dos campos 'estado', 'interesses' e 'aceita receber' na página de edição
 * (OK) Formatar o campo 'data de nascimento' na página de edição
+* Extrair o menu de 'app' para um partial específico (nav)
+* Adicionar um helptext do Bootstrap no campo interesse com a seguinte mensagem 'Escolha pelo menos 3 interesses'
+* Adicionar texto para campos opcionais no formulário
 * Implementar página de visualização metodo show
-* Implementar página de edição  metodo edit
-* Implementar ação de remoção metodo destroy
+* Implementar página de edição
+* Implementar ação de remoção
 * Adicionar máscaras aos campos necessários
 * Adicionar mensagem se o registro não for gravado no banco de dados

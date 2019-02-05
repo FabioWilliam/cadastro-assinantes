@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="mb-3">Lista de Assinantes</h1>
+    <h1 class="h2 mb-2">Lista de Assinantes</h1>
 
     @if (session('message'))
         <div class="alert alert-success">
@@ -9,7 +9,7 @@
         </div>
     @endif
 
-    <div class="actions mb-3">
+    <div class="actions py-2">
         <a href="{{ route('assinantes.create') }}" class="btn btn-primary">Criar Assinante</a>
     </div>
     <table class="table table-striped">
