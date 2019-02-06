@@ -34,22 +34,17 @@
             padding-right: 80px;
         }
 
+        .field-optional {
+            color: #aaa;
+            font-size: 15px;
+            margin-left: 5px;
+        }
+
     </style>
     <title>Sistema de Assinantes</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Editora Virtual</a>
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('assinantes.index') }}">Assinantes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Revistas</a>
-            </li>
-        </ul>
-    </nav>
-
+    @include('layouts.nav')
     <div class="container">
         @yield('content')
     </div>

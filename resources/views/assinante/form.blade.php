@@ -77,7 +77,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="complemento" class="col-4 col-form-label">Complemento</label>
+    <label for="complemento" class="col-4 col-form-label">Complemento <span class="field-optional">(opcional)</span></label>
     <div class="col-3">
         <input type="text" name="complemento" id="complemento" class="form-control" maxlength="20" value="{{ old('complemento', $assinante->complemento ?? '') }}" placeholder="apto 99 bl 1">
     </div>
@@ -123,6 +123,7 @@
                 </option>
             @endforeach
         </select>
+        <small class="form-text text-muted">Escolha pelo menos 3 interesses</small>
     </div>
 </div>
 <div class="form-group row">
@@ -135,7 +136,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="outras_informacoes" class="col-4 col-form-label">Outras Informações</label>
+    <label for="outras_informacoes" class="col-4 col-form-label">Outras Informações <span class="field-optional">(opcional)</span></label>
     <div class="col-7">
         <textarea name="outras_informacoes" id="outras_informacoes" class="form-control" cols="30" rows="4" maxlength="500">{{ old('outras_informacoes', $assinante->outras_informacoes ?? '') }}</textarea>
     </div>

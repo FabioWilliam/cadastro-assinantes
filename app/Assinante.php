@@ -3,11 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Hash;
 
 class Assinante extends Model
 {
     protected $guarded = [];
+
+    public function setSenhaAttribute($password)
+    {
+        $this->attributes['senha'] = Hash::make($password);
+    }
+
+    public function setConfirmaSenhaAttribute($password)
+    {
+        $this->attributes['confirma_senha'] = Hash::make($password);
+    }
 
     public function setInteressesAttribute($value)
     {

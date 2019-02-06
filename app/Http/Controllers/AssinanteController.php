@@ -6,6 +6,7 @@ use App\Assinante;
 use Illuminate\Http\Request;
 use App\Repository\ListasRepository;
 use App\Http\Requests\StoreAssinanteRequest;
+use App\Http\Requests\UpdateAssinanteRequest;
 
 class AssinanteController extends Controller
 {
@@ -63,7 +64,7 @@ class AssinanteController extends Controller
         return redirect()
             ->route('assinantes.index')
             ->withInput()
-            ->with('message', 'O assinante ' . $assinante->nome . ' foi incluído com sucesso! ');
+            ->with('message', 'O assinante ' . $assinante->nome . ' foi incluído com sucesso!');
     }
 
     /**
@@ -74,7 +75,6 @@ class AssinanteController extends Controller
      */
     public function show(Assinante $assinante)
     {
-        dd($assinante);
         return 'Mostra o Assinante';
     }
 
@@ -105,11 +105,16 @@ class AssinanteController extends Controller
      * @param  \App\Assinante  $assinante
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreAssinanteRequest $request, Assinante $assinante)
+    public function update(UpdateAssinanteRequest $request, Assinante $assinante)
     {
-        return('estou no método update');
-        var_dump($assinante);
-        var_dump($request);
+        $validated = $request->validated();
+
+        $assinante->update($request->all());
+
+        return redirect()
+            ->route('assinantes.index')
+            ->withInput()
+            ->with('message', 'O assinante ' . $assinante->nome . ' foi alterado com sucesso! ');
     }
 
     /**

@@ -3,18 +3,12 @@
 @section('content')
     <h1>Editar Assinante</h1>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @include('assinante.error')
+
     <form action="{{ route('assinantes.update', $assinante->id) }}" method="POST" autocomplete="false" novalidate>
         @csrf
         @method('PATCH')
+        <input type="hidden" name="id" value="{{ $assinante->id }}">
         @include('assinante.form')
     </form>
 @endsection

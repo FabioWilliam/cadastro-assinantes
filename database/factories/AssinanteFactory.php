@@ -12,6 +12,7 @@ $factory->define(App\Assinante::class, function () use ($faker) {
     $secondaryAddress = $faker->secondaryAddress();
     $text = $faker->text(500);
     $numero = $faker->buildingNumber;
+    $data_nascimento = rand(1,28) . '/' . rand(1,12) . '/' . (date('Y') - rand(18,80));
     $sexo = $faker->randomElement(['M', 'F']);
     $firstname = ($sexo == 'F') ? $faker->firstNameFemale : $faker->firstNameMale;
 
@@ -22,7 +23,7 @@ $factory->define(App\Assinante::class, function () use ($faker) {
         'confirma_senha' => $password,
         'cpf' => $faker->cpf,
         'sexo'=> $sexo,
-        'data_nascimento' => $faker->date('d/m/Y'),
+        'data_nascimento' => $data_nascimento,
         'cep' => $faker->postcode,
         'tipo_logradouro' => $faker->randomElement(['R', 'AV', 'AL', 'Q', 'RES', 'OUTROS']),
         'logradouro' => $faker->streetName,
