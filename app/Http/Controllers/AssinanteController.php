@@ -75,7 +75,15 @@ class AssinanteController extends Controller
      */
     public function show(Assinante $assinante)
     {
-        return 'Mostra o Assinante';
+        $estadosList = $this->listasRepository->getEstadosList();
+        $tipoLogradouroList = $this->listasRepository->getTipoLogradouroList();
+
+        return view('assinante.show', [
+            'estados' => $estadosList,
+            'tipos_logradouro' => $tipoLogradouroList,
+            'assinante' => $assinante,
+        ]);
+
     }
 
     /**
