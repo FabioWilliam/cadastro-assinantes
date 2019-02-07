@@ -19,7 +19,7 @@
 * (OK) Adicionar encriptação no campo de senha
 * (OK) Implementar página de edição
 * (OK) Corrigir a regra de geração de datas de nascimento no factory de acordo com regra de validação (de 18 a 80 anos) vai precisar gerar eu mesmo uma data 
-* Implementar ação de remoção
-* Implementar página de visualização metodo show
+* (OK) Implementar ação de remoção
+* (OK) Implementar página de visualização metodo show
 * Adicionar máscaras aos campos necessários
 * Adicionar mensagem se o registro não for gravado no banco de dados

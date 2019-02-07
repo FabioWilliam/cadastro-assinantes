@@ -37,7 +37,7 @@
                     <form action="{{ route('assinantes.destroy', ['id' => $assinante->id]) }}" method="POST" style="display: inline">
                         @method('DELETE')
                         @csrf
-                        <button type="submit" class="btn btn-outline-primary btn-sm">remover</button>
+                        <button type="submit" class="btn btn-outline-primary btn-sm" onclick="javascript: return confirm('Você deseja realmente apagar este assinante?')">remover</button>
                     </form>
                 </td>
             </tr>
