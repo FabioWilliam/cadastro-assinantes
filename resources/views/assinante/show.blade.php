@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="form-action">
-            <input type="submit" value="Voltar" class="btn btn-lg btn-primary">
+            <a href="{{ url()->previous() }}" class="btn btn-lg btn-primary">Voltar</a>
         </div>
     </form>
 
