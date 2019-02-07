@@ -10,5 +10,9 @@
         @method('PATCH')
         <input type="hidden" name="id" value="{{ $assinante->id }}">
         @include('assinante.form')
+        <div class="form-action">
+            <input type="submit" value="Salvar" class="btn btn-lg btn-primary">
+        </div>
     </form>
 @endsection
+

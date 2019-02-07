@@ -8,5 +8,8 @@
     <form action="{{ route('assinantes.store') }}" method="POST" novalidate>
         @csrf
         @include('assinante.form')
+        <div class="form-action">
+            <input type="submit" value="Cadastrar" class="btn btn-lg btn-primary">
+        </div>
     </form>
 @endsection

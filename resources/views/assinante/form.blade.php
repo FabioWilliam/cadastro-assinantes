@@ -141,6 +141,3 @@
         <textarea name="outras_informacoes" id="outras_informacoes" class="form-control" cols="30" rows="4" maxlength="500">{{ old('outras_informacoes', $assinante->outras_informacoes ?? '') }}</textarea>
     </div>
 </div>
-<div class="form-action">
-    <input type="submit" value="Cadastrar" class="btn btn-lg btn-primary">
-</div>
