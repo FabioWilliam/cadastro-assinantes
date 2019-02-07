@@ -83,7 +83,6 @@ class AssinanteController extends Controller
             'tipos_logradouro' => $tipoLogradouroList,
             'assinante' => $assinante,
         ]);
-
     }
 
     /**
@@ -122,7 +121,7 @@ class AssinanteController extends Controller
         return redirect()
             ->route('assinantes.index')
             ->withInput()
-            ->with('message', 'O assinante ' . $assinante->nome . ' foi alterado com sucesso! ');
+            ->with('message', 'O assinante ' . $assinante->nome . ' foi alterado com sucesso!');
     }
 
     /**
@@ -133,6 +132,12 @@ class AssinanteController extends Controller
      */
     public function destroy(Assinante $assinante)
     {
-        return 'Destroy o Assinante';
+        $nome = $assinante->nome;
+        $assinante->delete();
+
+        return redirect()
+            ->route('assinantes.index')
+            ->withInput()
+            ->with('message', 'O assinante ' . $nome . ' foi removido com sucesso!');
     }
 }

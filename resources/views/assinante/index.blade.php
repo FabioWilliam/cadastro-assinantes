@@ -32,9 +32,13 @@
                 <td>{{ $assinante->telefone }}</td>
                 <td>{{ $assinante->cpf }}</td>
                 <td>
-                    <a href="{{ route('assinantes.show', ['id' => $assinante->id]) }}">visualizar</a> |
-                    <a href="{{ route('assinantes.edit', ['id' => $assinante->id]) }}">editar</a> |
-                    <a href="{{ route('assinantes.destroy', ['id' => $assinante->id]) }}">apagar</a>
+                    <a href="{{ route('assinantes.show', ['id' => $assinante->id]) }}" class="btn btn-outline-primary btn-sm">visualizar</a>
+                    <a href="{{ route('assinantes.edit', ['id' => $assinante->id]) }}" class="btn btn-outline-primary btn-sm">editar</a>
+                    <form action="{{ route('assinantes.destroy', ['id' => $assinante->id]) }}" method="POST" style="display: inline">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-outline-primary btn-sm">remover</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
