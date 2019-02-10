@@ -9,6 +9,20 @@ class Assinante extends Model
 {
     protected $guarded = [];
 
+    /* Quando o método create é executado pelo controlle a model
+    executa automatica esta funcao.
+    */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($assinante)
+        {
+
+        });
+    }
+
+
     public function setSenhaAttribute($password)
     {
         $this->attributes['senha'] = Hash::make($password);
