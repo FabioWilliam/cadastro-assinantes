@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Repository\ListasRepository;
 use App\Http\Requests\StoreAssinanteRequest;
 use App\Http\Requests\UpdateAssinanteRequest;
+use App\Mail\AssinanteRemovido;
+use Mail;
 
 class AssinanteController extends Controller
 {
@@ -133,6 +135,11 @@ class AssinanteController extends Controller
     public function destroy(Assinante $assinante)
     {
         $nome = $assinante->nome;
+
+        Mail::to('marcelgsantos@editora3.com.br')->send(
+            new AssinanteRemovido($assinante)
+        );
+
         $assinante->delete();
 
         return redirect()
