@@ -1,69 +1,301 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Projeto Editora Virtual
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Introdução
 
-## About Laravel
+Este projeto serve de base para o aprendizado de algumas funcionalidades do framework Laravel.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## Passos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. Revisão da versão do PHP e módulos instalados
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+```bash
+php -v # mostra a versão do PHP
+php -m # lista os módulos instalados no PHP
+```
 
-## Learning Laravel
+```bash
+PHP >= 7.1.3
+OpenSSL PHP Extension
+PDO PHP Extension
+Mbstring PHP Extension
+Tokenizer PHP Extension
+XML PHP Extension
+Ctype PHP Extension
+JSON PHP Extension
+BCMath PHP Extension
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+### 2. Instalação do Laravel através do Composer
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+```bash
+composer global require laravel/installer
+```
 
-## Laravel Sponsors
+### 3. Criando o Projeto
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+```bash
+laravel new 'cadastro-assinantes'
+# ou
+composer create-project laravel/laravel cadastro-assinante --prefer-dist
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
+### 4. Testando o projeto criado e visualizando a página inicial
 
-## Contributing
+```bash
+php artisan serve
+# accessar http://localhost:8000 no navegador
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 5. Configuração da base de dados MySQL
 
-## Security Vulnerabilities
+Fazer ajustes no arquivo `.env`.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 6. Criação da model e migration
 
-## License
+```bash
+php artisan make:model Assinante -m
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 7. Adicionar campos necessários na migration e rodar a migration
+
+```bash
+php artisan migrate
+```
+
+### 8. Criação do controller
+
+```bash
+php artisan make:controller Assinante -r -m=Assinante
+```
+### 9. Adicionar e testar a rota para o controller
+
+```php
+<?php
+
+// routes/web.php
+Route::resource('assinante', 'AssinanteController');
+```
+
+### 10. Criação de uma factory para a model
+
+```bash
+php artisan make:factory AssinanteFactory -m=Assinante
+```
+
+### 11. Criação dos mutators e acessors (métodos getFooAttributes e setFooAttributes)
+
+Estes métodos são necessários para converter o formato dos campos que vieram da requisição HTTP para o formato esperado pelo banco de dados e vice-versa.
+
+```php
+    public function getDataNascimentoAttribute($value)
+    {
+        $date = \DateTime::createFromFormat('Y-m-d', $value);
+        $dateString = $date->format('d/m/Y');
+        return $dateString;
+    }
+
+    public function setDataNascimentoAttribute($value)
+    {
+        $date = \DateTime::createFromFormat('d/m/Y', $value);
+        $dateString = $date->format('Y-m-d');
+
+        $this->attributes['data_nascimento'] = $dateString;
+    }
+```
+
+### 12. Testar a factory no tinker
+
+```bash
+php artisan tinker
+```
+
+```bash
+App\Assinante::make(1); # cria e exibe uma model na memória
+App\Assinante::create(1); # cria e persiste uma model na base de dados
+```
+  
+### 13. Criação dos seeds para população dos dados na base de dados
+
+```bash
+php artisan make:seeder AssinantesTableSeeder
+```
+
+### 14. Criação do formulário de listagem
+
+Construir um tabela com os dados criados pela factory model e adicionar botões de ação como criar, visualizar, editar e remover.
+
+```html
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($assinantes as $assinante)
+            <tr>
+                <td>{{ $assinante->id }}</td>
+                <td>{{ $assinante->nome }}</td>
+                <td>{{ $assinante->email }}</td>
+                <td>
+                    <a href="{{ route('assinantes.show', ['id' => $assinante->id]) }}" class="btn btn-outline-primary btn-sm">visualizar</a>
+                    <a href="{{ route('assinantes.edit', ['id' => $assinante->id]) }}" class="btn btn-outline-primary btn-sm">editar</a>
+                    <form action="{{ route('assinantes.destroy', ['id' => $assinante->id]) }}" method="POST" style="display: inline">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-outline-primary btn-sm" onclick="javascript: return confirm('Você deseja realmente apagar este assinante?')">remover</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+```
+
+### 15. Adicionar estilos do Bootstrap na listagem
+
+Utilizar classes do Bootstrap para o menu de navegação, botões e tabela.
+  
+### 16. Adicionar paginação na listagem
+
+Adicionar o método `paginate(10)` na consulta e no template incluir `{{ $assinantes->links() }}` para adicionar a marcação necessária para o paginador.
+
+### 17. Criação do formulário de 'Inserção' com os tipos corretos de cada campo
+
+Utilizar na `action` do formulário o helper `route()` do Laravel e como argumento o nome da rota `assinantes.store`.
+
+Vale lembrar de utilizar o atributo `novalidate` do HTML para desativar a validação de formulário do navegador.
+
+Lembrar de adicionar no formulário as diretivas `@csrf`.
+
+```html
+<form action="{{ route('assinantes.store') }}" method="POST" novalidate>
+    @csrf
+```
+
+Utilizar as classes do Bootstrap para organizar os elementos do formulário na tela de uma forma mais agradável para o usuário.
+
+```html
+<div class="form-group row">
+    <label for="nome" class="col-4 col-form-label">Nome</label>
+    <div class="col-7">
+        <input type="text" name="nome" id="nome" class="form-control" maxlength="50" value="{{ old('nome', $assinante->nome ?? '') }}">
+    </div>
+</div>
+```
+
+### 18. Criar validação de campos do formulário
+
+Recomenda-se utilizar um objeto separado para fazer a validação. Isso permite a reutilização da regra de validação e torna o controller mais enxuto.
+
+```bash
+php artisan make:request StoreAssinanteRcequest
+```
+
+A validação é incluída na classe `StoreAssinanteRequest` no método `rules()`.
+
+Nesta validação foram colocados todas as regras a serem consideradas como `unique`, `max`, `array`, `required` entre outros.
+
+### 19. Criar uma versão traduzida para o idioma `pt-br` das mensagens de validação
+
+Criar arquivo em *resources/lang/pt-br/validation.php* e realizar as traduções.
+
+### 20. Adicionar mensagens de feedback na página de 'Inserção'
+
+Realizar uma verificação para checar a existência de erros e exibir cada um dos erros em uma lista.
+
+```html
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+```
+
+### 21. Validar o fluxo de funcionamento da listagem e da página de 'Inserção'
+
+Testar mensagens de erros, mensagens de retorno e redirecionamentos.
+  
+### 22. Criação do formulário de 'Edição'
+
+Observar como os campos vêm da base de dados e como eles devem ser colocados no HTML.
+
+### 23. Criar o validador do formulário de 'Edição'
+
+Semelhante ao formulário de criação o formulário de edição pode ter algumas diferenças tais como: Permitir que o campo email já esteja base de dados "desde que seja do mesmo assinante"
+
+### 24. Revisar mensagens de erros para o feedback
+
+Podem ser diferentes, "dica utilize a mesma seção do formulário de inserção assim você nao precisa tratar os erros na blade
+
+### 25. Criação do formulário de 'visualização'
+
+Apenas mostre os campos no sistema, não permita nenhuma alteração neles.
+
+Não há necessidade do formulário ser exatamente igual ao de criação/edição, mostre os campos checkbox, listas, option, rádio, no formato texto simplificando que lê a informação.
+
+Concatene os campos que podem ser exibidos de uma só vez tais como tipo de logradouro + logradouro + numero
+
+Adicionar um botão de voltar
+
+Atentar-se para que o formulário não deve conter uma action "valendo"
+
+Exibir os campos input com o atributo de readonly ou disabled.
+
+### 26. Remoção do assinante
+O Laravel trabalha o método destroy um pouco diferente método editar Update ou Store, é necessário dizer ao Láravel que queremos remover o registros. Para isso colocamos a diretiva `@method('DELETE')`
+dentro de um formulário específico, isto informa que ao controller que queremos acessar o método destroy. Vale a dica de confirmar a exclusão, pois na maioria dos casos não tem como recuperar o registro.
+
+### 26. Criação de um Repository
+
+Foi criado um objeto para conter todos os estados, tipos de logradouro, interesses, de forma a simplificar o blade.
+
+### 27. Extrair mensagens e menus para partials
+
+Separar os formulários em pequenos pedaços com o objetivo de reaproveitá-los, por exemplo
+layout.blade.php -> principal contendo os estilos e javascript
+form.blade.php -> somente formulario - assim ele servirá para o edição e criação
+exemplo do fomulário create
+
+```html
+@extends('layouts.app') <!-- contém o styles+css+javascript -->
+
+@section('content')  <!--  corpo do html -->
+    <h1 class="h2 mb-2">Novo Assinante</h1>
+
+    @include('assinante.error') <!-- mensagens de feedback de erros -->
+
+    <form action="{{ route('assinantes.store') }}" method="POST" novalidate>
+        @csrf
+        @include('assinante.form')  <!-- formulário com os input type, rádios, checkbox, etc -->
+        <div class="form-action">
+            <input type="submit" value="Cadastrar" class="btn btn-lg btn-primary">
+        </div>
+    </form>
+@endsection
+```
+
+### 28. Adicionar máscaras aos campos
+
+Máscaras são importantes pois auxiliam a visualização da informação que está no campo e ajuda o usuário no seu preenchimento.
+
+### 29. PlaceHolder
+Coloque PlaceHolder onde o usuário pode ter dúvidas de como preencher o campo, por ex: cep 02435-090, cpf 141.547.141-58
+
+### 30. Helpers
+O Helpers são pequenas mensagens que auxiliam o usuário de como preencher específicas, por ex: "preencher no mínimo 3 interesses".
+
+
+### 31. Validação da navegação completa
+Valide cada para do sistema, teste unitário
+Valide todo o sistema, teste completo.
+Peça a outra pessoa para testar você se surpreenderá com que os usuários conseguem fazer.
+
