@@ -298,4 +298,3 @@ O Helpers são pequenas mensagens que auxiliam o usuário de como preencher espe
 Valide cada para do sistema, teste unitário
 Valide todo o sistema, teste completo.
 Peça a outra pessoa para testar você se surpreenderá com que os usuários conseguem fazer.
-
