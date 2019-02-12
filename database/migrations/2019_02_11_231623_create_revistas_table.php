@@ -16,7 +16,7 @@ class CreateRevistasTable extends Migration
         Schema::create('revistas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo', 50);
-            $table->string('codigo', 2)->unique()->index();
+            $table->string('codigo', 3)->unique()->index();
             $table->text('descricao', 500);
             $table->string('formato',1);
             $table->decimal('valor',5,2);

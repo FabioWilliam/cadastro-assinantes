@@ -14,6 +14,10 @@ $factory->define(App\Revista::class, function (Faker $faker) {
                 'istoe-dinheiro.png', 'istoe.png', 'menu.png', 'motor-show.png', 'planeta.png',
                 'runners-world.png', 'select.png', 'womens-health.png'];
     $assuntos = ['economia', 'agronomia', 'meio ambiente', 'moda', 'gastronomia', 'carro', 'esportes'];
+    $url = $faker->url;
+    if (strlen($url) > 60) {
+        $url = substr($url,0,55) . '.com';
+    }
     return [
         'titulo' => 'Revista ' . $titulo,
         'codigo' => $codigo,
@@ -21,11 +25,10 @@ $factory->define(App\Revista::class, function (Faker $faker) {
         'formato' => $faker->randomElement(['I','D']),
         'valor' => $faker->numberBetween(500,3000)/100,
         'vigencia' => $faker->randomElement(['6 meses', '1 ano', '2 ano']),
-        'url' => $faker->url,
+        'url' => $url,
         'participa_de_promocao' => $faker->randomElement([true,false]),
         'assuntos' => $faker->randomElements($assuntos,2),
         'observacoes' => $faker->text($maxNbChars = 200),
         'capa' => $faker->randomElement($capas),
-
     ];
 });
