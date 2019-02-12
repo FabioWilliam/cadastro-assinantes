@@ -81,6 +81,8 @@ Route::resource('assinante', 'AssinanteController');
 ```bash
 php artisan make:factory AssinanteFactory -m=Assinante
 ```
+Dica colocar $faker = \Faker\Factory::create('pt_BR'); 
+** traz alguns nomes em portugues
 
 ### 11. Criação dos mutators e acessors (métodos getFooAttributes e setFooAttributes)
 
