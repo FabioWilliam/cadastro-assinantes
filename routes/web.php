@@ -13,3 +13,4 @@
 
 Route::redirect('/', 'assinantes');
 Route::resource('assinantes', 'AssinanteController');
+Route::resource('revistas', 'RevistaController');
