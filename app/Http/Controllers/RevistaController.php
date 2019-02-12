@@ -14,7 +14,11 @@ class RevistaController extends Controller
      */
     public function index()
     {
-        //
+        $revistas = Revista::orderBy('codigo')->paginate(10);
+
+        return view('revista.index', [
+            'revistas' => $revistas
+        ]);
     }
 
     /**

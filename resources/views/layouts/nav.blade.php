@@ -4,8 +4,8 @@
         <li class="nav-item active">
             <a class="nav-link" href="{{ route('assinantes.index') }}">Assinantes</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Revistas</a>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ route('revistas.index') }}">Revistas</a>
         </li>
     </ul>
 </nav>
