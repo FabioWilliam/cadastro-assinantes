@@ -166,7 +166,11 @@ Utilizar classes do Bootstrap para o menu de navegação, botões e tabela.
 
 Adicionar o método `paginate(10)` na consulta e no template incluir `{{ $assinantes->links() }}` para adicionar a marcação necessária para o paginador.
 
-### 17. Criação do formulário de 'Inserção' com os tipos corretos de cada campo
+### 17. Criação de um Repository
+
+Pensar nas listas, combos, radios que o formulário terá. Foi criado um objeto para conter todos os estados, tipos de logradouro, interesses, de forma a simplificar o blade.
+
+### 18. Criação do formulário de 'Inserção' com os tipos corretos de cada campo
 
 Utilizar na `action` do formulário o helper `route()` do Laravel e como argumento o nome da rota `assinantes.store`.
 
@@ -190,7 +194,7 @@ Utilizar as classes do Bootstrap para organizar os elementos do formulário na t
 </div>
 ```
 
-### 18. Criar validação de campos do formulário
+### 19. Criar validação de campos do formulário
 
 Recomenda-se utilizar um objeto separado para fazer a validação. Isso permite a reutilização da regra de validação e torna o controller mais enxuto.
 
@@ -202,11 +206,11 @@ A validação é incluída na classe `StoreAssinanteRequest` no método `rules()
 
 Nesta validação foram colocados todas as regras a serem consideradas como `unique`, `max`, `array`, `required` entre outros.
 
-### 19. Criar uma versão traduzida para o idioma `pt-br` das mensagens de validação
+### 20. Criar uma versão traduzida para o idioma `pt-br` das mensagens de validação
 
 Criar arquivo em *resources/lang/pt-br/validation.php* e realizar as traduções.
 
-### 20. Adicionar mensagens de feedback na página de 'Inserção'
+### 21. Adicionar mensagens de feedback na página de 'Inserção'
 
 Realizar uma verificação para checar a existência de erros e exibir cada um dos erros em uma lista.
 
@@ -222,23 +226,23 @@ Realizar uma verificação para checar a existência de erros e exibir cada um d
 @endif
 ```
 
-### 21. Validar o fluxo de funcionamento da listagem e da página de 'Inserção'
+### 22. Validar o fluxo de funcionamento da listagem e da página de 'Inserção'
 
 Testar mensagens de erros, mensagens de retorno e redirecionamentos.
   
-### 22. Criação do formulário de 'Edição'
+### 23. Criação do formulário de 'Edição'
 
 Observar como os campos vêm da base de dados e como eles devem ser colocados no HTML.
 
-### 23. Criar o validador do formulário de 'Edição'
+### 24. Criar o validador do formulário de 'Edição'
 
 Semelhante ao formulário de criação o formulário de edição pode ter algumas diferenças tais como: Permitir que o campo email já esteja base de dados "desde que seja do mesmo assinante"
 
-### 24. Revisar mensagens de erros para o feedback
+### 25. Revisar mensagens de erros para o feedback
 
 Podem ser diferentes, "dica utilize a mesma seção do formulário de inserção assim você nao precisa tratar os erros na blade
 
-### 25. Criação do formulário de 'visualização'
+### 26. Criação do formulário de 'visualização'
 
 Apenas mostre os campos no sistema, não permita nenhuma alteração neles.
 
@@ -252,15 +256,12 @@ Atentar-se para que o formulário não deve conter uma action "valendo"
 
 Exibir os campos input com o atributo de readonly ou disabled.
 
-### 26. Remoção do assinante
+### 27. Remoção do assinante
 O Laravel trabalha o método destroy um pouco diferente método editar Update ou Store, é necessário dizer ao Láravel que queremos remover o registros. Para isso colocamos a diretiva `@method('DELETE')`
 dentro de um formulário específico, isto informa que ao controller que queremos acessar o método destroy. Vale a dica de confirmar a exclusão, pois na maioria dos casos não tem como recuperar o registro.
 
-### 26. Criação de um Repository
 
-Foi criado um objeto para conter todos os estados, tipos de logradouro, interesses, de forma a simplificar o blade.
-
-### 27. Extrair mensagens e menus para partials
+### 28. Extrair mensagens e menus para partials
 
 Separar os formulários em pequenos pedaços com o objetivo de reaproveitá-los, por exemplo
 layout.blade.php -> principal contendo os estilos e javascript
@@ -285,18 +286,17 @@ exemplo do fomulário create
 @endsection
 ```
 
-### 28. Adicionar máscaras aos campos
+### 29. Adicionar máscaras aos campos
 
 Máscaras são importantes pois auxiliam a visualização da informação que está no campo e ajuda o usuário no seu preenchimento.
 
-### 29. PlaceHolder
+### 30. PlaceHolder
 Coloque PlaceHolder onde o usuário pode ter dúvidas de como preencher o campo, por ex: cep 02435-090, cpf 141.547.141-58
 
-### 30. Helpers
+### 31. Helpers
 O Helpers são pequenas mensagens que auxiliam o usuário de como preencher específicas, por ex: "preencher no mínimo 3 interesses".
 
-
-### 31. Validação da navegação completa
+### 32. Validação da navegação completa
 Valide cada para do sistema, teste unitário
 Valide todo o sistema, teste completo.
 Peça a outra pessoa para testar você se surpreenderá com que os usuários conseguem fazer.

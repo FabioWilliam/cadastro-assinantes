@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Revista;
 use Illuminate\Http\Request;
+use App\Repository\ListasRepository;
 
 class RevistaController extends Controller
 {
+    private $listasRepository;
+
+    public function __construct()
+    {
+        $this->listasRepository = new ListasRepository();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +36,13 @@ class RevistaController extends Controller
      */
     public function create()
     {
-        //
+        $assuntoslist = $this->listasRepository->getAssuntosList();
+        $vigencialist = $this->listasRepository->getVigenciaList();
+        return view('revista.create', [
+            'assuntos' => $assuntoslist,
+            'vigencia' => $vigencialist,
+        ]);
+
     }
 
     /**
@@ -39,7 +53,7 @@ class RevistaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->capa);
     }
 
     /**

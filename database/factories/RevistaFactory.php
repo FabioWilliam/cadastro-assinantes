@@ -25,7 +25,7 @@ $factory->define(App\Revista::class, function (Faker $faker) {
         'formato' => $faker->randomElement(['I','D']),
         'valor' => $faker->numberBetween(500,3000)/100,
         'vigencia' => $faker->randomElement(['6 meses', '1 ano', '2 ano']),
-        'url' => $url,
+        'site' => $url,
         'participa_de_promocao' => $faker->randomElement([true,false]),
         'assuntos' => $faker->randomElements($assuntos,2),
         'observacoes' => $faker->text($maxNbChars = 200),

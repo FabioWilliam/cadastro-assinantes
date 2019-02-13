@@ -21,7 +21,7 @@ class CreateRevistasTable extends Migration
             $table->string('formato',1);
             $table->decimal('valor',5,2);
             $table->string('vigencia',10);
-            $table->string('url',60);
+            $table->string('site',60);
             $table->string('capa',60);
             $table->boolean('participa_de_promocao')->default(false);
             $table->string('assuntos',300);

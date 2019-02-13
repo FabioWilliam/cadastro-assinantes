@@ -4,6 +4,27 @@ namespace App\Repository;
 
 class ListasRepository {
 
+    public function getAssuntosList()
+    {
+        return [
+            'economia' => 'Economia',
+            'agronomia' => 'Agronomia',
+            'meio ambiente' => 'Meio ambiente',
+            'moda' => 'Moda',
+            'gastronomia' => 'Gastronomia',
+            'carro' => 'Carro',
+            'esportes' => 'Esportes',
+        ];
+    }
+    public function getVigenciaList()
+    {
+        return [
+            '6 meses' => '6 meses',
+            '1 ano' => '1 ano',
+            '2 anos' => '2 anos',
+        ];
+    }
+
     public function getInteressesList()
     {
         return [
