@@ -17,7 +17,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="formato" class="col-4 col-form-label">formato</label>
+    <label for="formato" class="col-4 col-form-label">Formato</label>
     <div class="col-6">
         <div class="form-check">
             <input type="radio" name="formato" id="impresso" value="I" class="form-check-input" {{ old('formato', $revista->formato ?? '') == 'I' ? 'checked' : '' }}>
@@ -32,7 +32,21 @@
 <div class="form-group row">
     <label for="valor" class="col-4 col-form-label">Valor</label>
     <div class="col-3">
-        <input type="number" name="valor" id="valor" class="form-control" value="{{ old('valor', $revista->valor ?? '') }}" placeholder="99,99">
+        <input type="text" name="valor" id="valor" class="form-control" value="{{ old('valor', $revista->valor ?? '') }}" placeholder="99,99">
+    </div>
+</div>
+<div class="form-group row">
+    <label for="vigencia" class="col-4 col-form-label">Vigência</label>
+    <div class="col-3">
+        <select name="vigencia" id="vigencia" class="form-control">
+            <option value="">Selecione...</option>
+            @foreach ($vigencia as $key => $value)
+                <option value="{{ $key }}" {{ $key == old('vigencia', $revista->vigencia ?? '') ? 'selected' : '' }}>
+                {{-- <option value="{{ $key }}" {{ in_array($key, old(['vigencia'], $revista->vigencia ?? [])) ? 'selected' : '' }}> --}}
+                    {{ $value }}
+                </option>
+            @endforeach
+        </select>
     </div>
 </div>
 <div class="form-group row">
@@ -41,14 +55,10 @@
         <input type="url" name="site" id="site" class="form-control" value="{{ old('site', $revista->url ?? '') }}" placeholder="https://example.com">
     </div>
 </div>
-
-<div class="input-group mb-3">
-    <div class="input-group-append">
-        <span class="input-group-text" id="capaAddon">Foto da Capa</span>
-    </div>
-    <div class="custom-file">
-        <input type="file" class="custom-file-input" id="capa">
-        <label class="custom-file-label" for="capa" aria-describedby="capaAddon">Escola o arquivo</label>
+<div class="form-group row">
+    <label for="url" class="col-4 col-form-label">Capa</label>
+    <div class="col-8">
+        <input type="file" name="capa" id="capa">
     </div>
 </div>
 <div class="form-group row">
@@ -62,7 +72,7 @@
 </div>
 
 <div class="form-group row">
-    <label for="assuntos" class="col-4 col-form-label">assuntos</label>
+    <label for="assuntos" class="col-4 col-form-label">Assuntos</label>
     <div class="col-5">
         <select name="assuntos[]" id="assuntos" class="form-control" multiple>
             @foreach ($assuntos as $key => $value)
@@ -80,8 +90,3 @@
         <textarea name="observacoes" id="observacoes" class="form-control" cols="30" rows="4" maxlength="500">{{ old('observacoes', $revista->outras_informacoes ?? '') }}</textarea>
     </div>
 </div>
-
-
-
-
-

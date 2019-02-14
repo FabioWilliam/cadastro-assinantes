@@ -22,6 +22,7 @@ class ListasRepository {
             '6 meses' => '6 meses',
             '1 ano' => '1 ano',
             '2 anos' => '2 anos',
+            '5 anos' => '5 anos',
         ];
     }
 

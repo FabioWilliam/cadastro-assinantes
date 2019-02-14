@@ -1,4 +1,11 @@
 # Roadmap
+### Revistas
+* finalizar StoreRequestRevista
+* Verificar Bootstrap do campo File
+
+### Assinantes
+* Adicionar mensagem se o registro não for gravado no banco de dados
+>
 
 * (OK) Adicionar o 'old' aos campos 'sexo', 'tipo de logradouro', 'estado', 'interesses' e 'aceita receber informações'
 * (OK) Colocar Estados e Logradouros em um repositório
@@ -22,4 +29,3 @@
 * (OK) Implementar ação de remoção
 * (OK) Implementar página de visualização metodo show
 * Adicionar máscaras aos campos necessários
-* Adicionar mensagem se o registro não for gravado no banco de dados

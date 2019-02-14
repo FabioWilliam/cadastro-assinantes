@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Revista;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRevistaRequest;
 use App\Repository\ListasRepository;
+
 
 class RevistaController extends Controller
 {
@@ -22,7 +24,7 @@ class RevistaController extends Controller
      */
     public function index()
     {
-        $revistas = Revista::orderBy('codigo')->paginate(10);
+        $revistas = Revista::orderBy('id', 'DESC')->paginate(10);
 
         return view('revista.index', [
             'revistas' => $revistas
@@ -51,9 +53,24 @@ class RevistaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRevistaRequest $request)
     {
-        dd($request->capa);
+        $file = $request->file('capa');
+        $fileName = time() . '-' . $file->getClientOriginalName();
+        $filePath = public_path('capas');
+
+        $file->move($filePath, $fileName);
+
+        $input = $request->all();
+        $input['capa'] = $fileName;
+
+        $revista = Revista::create($input);
+
+        return redirect()
+            ->route('revistas.index')
+            ->withInput()
+            ->with('message', 'A revista ' . $revista->titulo . ' foi incluída com sucesso!');
+
     }
 
     /**

@@ -15,14 +15,28 @@ return [
 
     'array' => 'O :attribute deve ser uma lista.',
     'email' => 'O :attribute deve ser um e-mail válido.',
-    'in' => 'O valor escolhido do campo :attribute é inválido.',
+    'in' => 'O conteúdo escolhido do campo :attribute é inválido.',
+    'url' => 'O conteúdo escolhido do campo :attribute é inválido.',
+    'active_url' => 'O :attribute não é uma URL ativa.',
     'max' => [
         'numeric' => 'O campo :attribute deve ter no máximo :max caracteres.',
         'string' => 'O campo :attribute deve ter no máximo :max caracteres.',
     ],
     'min' => [
-        'numeric' => 'O campo :attribute deve ter no mínimo :max caracteres.',
-        'string' => 'O campo :attribute deve ter no mínimo :max caracteres.',
+        'numeric' => 'O campo :attribute deve ter no mínimo :min caracteres.',
+        'string' => 'O campo :attribute deve ter no mínimo :min caracteres.',
+    ],
+    'lt' => [
+        'numeric' => 'The :attribute deve ser menor que :value.',
+        'file' => 'The :attribute deve ser menor que :value kilobytes.',
+        'string' => 'The :attribute deve ser menor que :value caracteres.',
+        'array' => 'The :attribute deve ter menos de :value items.',
+    ],
+    'gt' => [
+        'numeric' => ':attribute deve ser maior que :value.',
+        'file' => 'The :attribute deve ser maior que :value kilobytes.',
+        'string' => 'The :attribute deve ser maior que :value caracteres.',
+        'array' => 'The :attribute deve ser mais que :value items.',
     ],
     'required' => 'O :attribute é um campo de preenchimento obrigatório.',
     'same' => 'Os campos :attribute e :other devem ser iguais.',

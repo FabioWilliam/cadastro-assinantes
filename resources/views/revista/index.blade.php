@@ -17,6 +17,7 @@
             <tr>
                 <th>#</th>
                 <th>Cód.</th>
+                <th>Capa</th>
                 <th>Título</th>
                 <th>Descrição</th>
                 <th style="width: 100px">Valor</th>
@@ -29,9 +30,12 @@
             <tr>
                 <td>{{ $revista->id }}</td>
                 <td>{{ $revista->codigo }}</td>
+                <td>
+                    <img src="capas/{{ $revista->capa }}" width="80">
+                </td>
                 <td>{{ $revista->titulo }}</td>
                 <td>{{ $revista->getDescricaoReduzida() }}</td>
-                <td>R$ {{ number_format($revista->valor, 2, ',', '.') }}</td>
+                <td>R$ {{ $revista->valor }}</td>
                 <td>{{ $revista->vigencia }}</td>
                 <td>
                     <a href="{{ route('revistas.show', ['id' => $revista->id]) }}" class="btn btn-outline-primary btn-sm">visualizar</a>

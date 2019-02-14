@@ -19,7 +19,7 @@ $factory->define(App\Revista::class, function (Faker $faker) {
         $url = substr($url,0,55) . '.com';
     }
     return [
-        'titulo' => 'Revista ' . $titulo,
+        'titulo' => $titulo,
         'codigo' => $codigo,
         'descricao' => $faker->text($maxNbChars = 200),
         'formato' => $faker->randomElement(['I','D']),

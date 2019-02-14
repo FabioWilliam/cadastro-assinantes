@@ -199,13 +199,16 @@ Utilizar as classes do Bootstrap para organizar os elementos do formulário na t
 Recomenda-se utilizar um objeto separado para fazer a validação. Isso permite a reutilização da regra de validação e torna o controller mais enxuto.
 
 ```bash
-php artisan make:request StoreAssinanteRcequest
+php artisan make:request StoreAssinanteRequest
 ```
 
 A validação é incluída na classe `StoreAssinanteRequest` no método `rules()`.
 
 Nesta validação foram colocados todas as regras a serem consideradas como `unique`, `max`, `array`, `required` entre outros.
-
+> Configurar os Rules específicos para os campos em que o padrão nao é suportado
+```sh
+php artisan make:rule Cep
+```
 ### 20. Criar uma versão traduzida para o idioma `pt-br` das mensagens de validação
 
 Criar arquivo em *resources/lang/pt-br/validation.php* e realizar as traduções.
