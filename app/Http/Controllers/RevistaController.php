@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Revista;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRevistaRequest;
+use App\Http\Requests\UpdateRevistaRequest;
 use App\Repository\ListasRepository;
 
 
@@ -92,7 +93,14 @@ class RevistaController extends Controller
      */
     public function edit(Revista $revista)
     {
-        //
+        $assuntoslist = $this->listasRepository->getAssuntosList();
+        $vigencialist = $this->listasRepository->getVigenciaList();
+        return view('revista.edit', [
+            'assuntos' => $assuntoslist,
+            'vigencia' => $vigencialist,
+            'revista'   => $revista,
+        ]);
+
     }
 
     /**
@@ -102,9 +110,23 @@ class RevistaController extends Controller
      * @param  \App\Revista  $revista
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Revista $revista)
+    public function update(UpdateRevistaRequest $request, Revista $revista)
     {
-        //
+        $file = $request->file('capa');
+        $fileName = time() . '-' . $file->getClientOriginalName();
+        $filePath = public_path('capas');
+
+        $file->move($filePath, $fileName);
+
+        $input = $request->all();
+        $input['capa'] = $fileName;
+
+        $revista->update($input);
+
+        return redirect()
+            ->route('revistas.index')
+            ->withInput()
+            ->with('message', 'A revista ' . $revista->titulo . ' foi alterada com sucesso!');
     }
 
     /**
@@ -115,6 +137,14 @@ class RevistaController extends Controller
      */
     public function destroy(Revista $revista)
     {
-        //
+        $nome = $revista->titulo;
+
+        $revista->delete();
+
+        return redirect()
+            ->route('revistas.index')
+            ->withInput()
+            ->with('message', 'A Revista  ' . $nome . ' foi removida com sucesso!');
+
     }
 }

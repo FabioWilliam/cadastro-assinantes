@@ -30,7 +30,7 @@ class Revista extends Model
 
     public function getDescricaoReduzida()
     {
-        return substr($this->descricao, 1, 100);
+        return substr($this->descricao, 0, 100);
     }
 
 }

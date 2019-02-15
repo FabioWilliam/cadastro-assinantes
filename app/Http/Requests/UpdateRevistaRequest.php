@@ -1,13 +1,12 @@
 <?php
 
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\Vigencia;
 use App\Rules\ValorReVista;
 
-class StoreRevistaRequest extends FormRequest
+class UpdateRevistaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,18 +25,19 @@ class StoreRevistaRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->request->get('id');
+
         return [
             'titulo'    => 'required|max:50',
-            'codigo'    => 'required|max:3|unique:revistas|max:3|min:3',
+            'codigo'    => "required|max:3|unique:revistas,codigo,$id,id|max:3|min:3",
             'descricao' => 'required|max:500',
             'formato'   => 'required|in:"D","I"',
             'valor'     => ['required', new ValorRevista],
             'vigencia'  => ['required', new Vigencia],
             'site'      => 'url',
-            'capa'      =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'capa'      =>  "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             'assuntos'  => 'required|array|min:2',
             'observacoes' => 'nullable|max:500',
-
         ];
     }
 
@@ -56,5 +56,4 @@ class StoreRevistaRequest extends FormRequest
             'observacoes' => 'Observações',
         ];
     }
-
 }

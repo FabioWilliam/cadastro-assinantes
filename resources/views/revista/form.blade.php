@@ -1,5 +1,5 @@
 <div class="form-group row">
-    <label for="nome" class="col-4 col-form-label">Título</label>
+    <label for="titulo" class="col-4 col-form-label">Título</label>
     <div class="col-7">
         <input type="text" name="titulo" id="titulo" class="form-control" maxlength="50" value="{{ old('titulo', $revista->titulo ?? '') }}">
     </div>
@@ -50,17 +50,21 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="url" class="col-4 col-form-label">Site</label>
+    <label for="site" class="col-4 col-form-label">Site</label>
     <div class="col-8">
-        <input type="url" name="site" id="site" class="form-control" value="{{ old('site', $revista->url ?? '') }}" placeholder="https://example.com">
+        <input type="url" name="site" id="site" class="form-control" value="{{ old('site', $revista->site ?? '') }}" placeholder="https://example.com">
     </div>
 </div>
 <div class="form-group row">
-    <label for="url" class="col-4 col-form-label">Capa</label>
-    <div class="col-8">
+    <label for="capa" class="col-4 col-form-label">Capa</label>
+    <div class="col-6">
         <input type="file" name="capa" id="capa">
     </div>
+    @hasSection ('editar')
+        <img src="../../capas/{{ $revista->capa }}"  height="70">
+    @endif
 </div>
+
 <div class="form-group row">
     <label for="participa_de_promocao" class="col-4 col-form-label">Participa de Promoção</label>
     <div class="col-6">
@@ -85,8 +89,9 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="observacoes" class="col-4 col-form-label">Outras Informações <span class="field-optional">(opcional)</span></label>
+    <label for="observacoes" class="col-4 col-form-label">Observações<span class="field-optional">(opcional)</span></label>
     <div class="col-7">
-        <textarea name="observacoes" id="observacoes" class="form-control" cols="30" rows="4" maxlength="500">{{ old('observacoes', $revista->outras_informacoes ?? '') }}</textarea>
+        <textarea name="observacoes" id="observacoes" class="form-control" cols="30" rows="4" maxlength="500">{{ old('observacoes', $revista->observacoes ?? '') }}</textarea>
     </div>
 </div>
+

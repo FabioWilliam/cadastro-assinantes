@@ -209,6 +209,9 @@ Nesta validação foram colocados todas as regras a serem consideradas como `uni
 ```sh
 php artisan make:rule Cep
 ```
+dica prestar atenção nas aspas duplas
+     'codigo'    => "required|max:3|unique:revistas,codigo,$id,id|max:3|min:3"
+     
 ### 20. Criar uma versão traduzida para o idioma `pt-br` das mensagens de validação
 
 Criar arquivo em *resources/lang/pt-br/validation.php* e realizar as traduções.
