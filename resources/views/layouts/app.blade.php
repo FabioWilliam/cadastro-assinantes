@@ -24,6 +24,33 @@
                 rightAlign: true,
                 unmaskAsNumber: true
              });
+
+            // Marca ou desmarca todos os checkbox
+             $('#select_all').on('click', function() {
+                var flag = $('#select_all').is(':checked');
+                var hasAssinantesChecked = hasAssChecked();
+
+                $(".checkboxItem").prop('checked', flag);
+                $('#remove').prop('disabled', !hasAssinantesChecked);
+             });
+
+             $('.checkboxItem').on('click', function() {
+                var hasAssinantesChecked = hasAssChecked();
+                $('#remove').prop('disabled', !hasAssinantesChecked);
+             });
+
+             function hasAssChecked()
+             {
+                 var flag = false;
+                $('.checkboxItem').each(function(index, elm) {
+                    if ($(elm).is(':checked') === true) {
+                        flag = true;
+                        return;
+                    }
+                });
+
+                return flag;
+             }
         });
 
     </script>
@@ -42,6 +69,10 @@
             box-sizing: border-box;
             margin-top: 20px;
             width: 800px;
+        }
+
+        .form-list {
+            width: 1140px;
         }
 
         .row {

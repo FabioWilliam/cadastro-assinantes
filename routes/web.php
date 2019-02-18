@@ -14,3 +14,8 @@
 Route::redirect('/', 'assinantes');
 Route::resource('assinantes', 'AssinanteController');
 Route::resource('revistas', 'RevistaController');
+Route::post('excluir-assinantes', function ()
+    {
+        return 'Destroy Batch';
+    }
+);
