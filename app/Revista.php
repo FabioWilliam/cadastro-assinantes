@@ -15,6 +15,9 @@ class Revista extends Model
 
     public function setValorAttribute($value)
     {
+        $value = str_replace('R$', '', $value);
+        $value = str_replace('$ ', '', $value);
+        $value = str_replace('$', '', $value);
         $this->attributes['valor'] = str_replace(',', '.', $value);
     }
 

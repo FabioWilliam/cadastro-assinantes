@@ -14,6 +14,16 @@
             $('#data_nascimento').inputmask('99/99/9999');
             $('#cep').inputmask('99999-999');
             $('#telefone').inputmask('(99) 99999-9999');
+            $("#valor").inputmask( 'currency',{"autoUnmask": true,
+                radixPoint:",",
+                groupSeparator: ".",
+                allowMinus: false,
+                placeHolder: "0",
+                digits: 2,
+                digitsOptional: false,
+                rightAlign: true,
+                unmaskAsNumber: true
+             });
         });
 
     </script>

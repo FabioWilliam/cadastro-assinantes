@@ -32,7 +32,7 @@
 <div class="form-group row">
     <label for="valor" class="col-4 col-form-label">Valor</label>
     <div class="col-3">
-        <input type="text" name="valor" id="valor" class="form-control" value="{{ old('valor', $revista->valor ?? '') }}" placeholder="99,99">
+        <input type="text" name="valor" id="valor" class="form-control" value="{{ old('valor', $revista->valor ?? '') }}">
     </div>
 </div>
 <div class="form-group row">

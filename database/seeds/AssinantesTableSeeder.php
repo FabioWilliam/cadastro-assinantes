@@ -12,6 +12,6 @@ class AssinantesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Assinante::class, 100)->create();
+        factory(Assinante::class, 10)->create();
     }
 }

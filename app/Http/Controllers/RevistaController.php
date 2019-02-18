@@ -45,8 +45,7 @@ class RevistaController extends Controller
             'assuntos' => $assuntoslist,
             'vigencia' => $vigencialist,
         ]);
-
-    }
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -71,7 +70,6 @@ class RevistaController extends Controller
             ->route('revistas.index')
             ->withInput()
             ->with('message', 'A revista ' . $revista->titulo . ' foi incluída com sucesso!');
-
     }
 
     /**
@@ -82,7 +80,14 @@ class RevistaController extends Controller
      */
     public function show(Revista $revista)
     {
-        //
+        $assuntoslist = $this->listasRepository->getAssuntosList();
+        $vigencialist = $this->listasRepository->getVigenciaList();
+
+        return view('revista.show', [
+            'assuntos' => $assuntoslist,
+            'vigencia' => $vigencialist,
+            'revista' => $revista,
+        ]);
     }
 
     /**
@@ -98,9 +103,8 @@ class RevistaController extends Controller
         return view('revista.edit', [
             'assuntos' => $assuntoslist,
             'vigencia' => $vigencialist,
-            'revista'   => $revista,
+            'revista'  => $revista,
         ]);
-
     }
 
     /**
@@ -145,6 +149,5 @@ class RevistaController extends Controller
             ->route('revistas.index')
             ->withInput()
             ->with('message', 'A Revista  ' . $nome . ' foi removida com sucesso!');
-
     }
 }

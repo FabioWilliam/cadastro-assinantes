@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\Vigencia;
-use App\Rules\ValorReVista;
+use App\Rules\ValorRevista;
 
 class StoreRevistaRequest extends FormRequest
 {
