@@ -28,9 +28,9 @@
             // Marca ou desmarca todos os checkbox
              $('#select_all').on('click', function() {
                 var flag = $('#select_all').is(':checked');
-                var hasAssinantesChecked = hasAssChecked();
-
                 $(".checkboxItem").prop('checked', flag);
+
+                var hasAssinantesChecked = hasAssChecked();
                 $('#remove').prop('disabled', !hasAssinantesChecked);
              });
 
