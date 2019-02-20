@@ -132,12 +132,12 @@ class AssinanteController extends Controller
      * @param  \App\Assinante  $assinante
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ssinante $assinante)
+    public function destroy(Assinante $assinante)
     {
-
         $nome = $assinante->nome;
+        $email = $assinante->email;
 
-        Mail::to('marcelgsantos@editora3.com.br')->send(
+        Mail::to($email)->send(
             new AssinanteRemovido($assinante)
         );
 
@@ -157,14 +157,14 @@ class AssinanteController extends Controller
      */
     public function batch(Request $request)
     {
-        if ($request->has('assinantesMarcados'))
+        if ($request->has('assinantes_marcados'))
         {
-            $array_to_delete = explode('/', $request->assinantesMarcados);
-            Assinante::destroy($array_to_delete);
+            $assinantes = explode('|', $request->assinantes_marcados);
+            Assinante::destroy($assinantes);
 
             return redirect()
-            ->route('assinantes.index')
-            ->with('message', 'Assinantes removidos com sucesso!');
+                ->route('assinantes.index')
+                ->with('message', 'Assinantes removidos com sucesso!');
         }
     }
 

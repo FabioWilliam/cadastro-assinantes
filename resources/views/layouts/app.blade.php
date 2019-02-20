@@ -31,12 +31,12 @@
                 $(".checkboxItem").prop('checked', flag);
 
                 var hasAssinantesChecked = hasAssChecked();
-                $('#removeAssinantes').prop('disabled', !hasAssinantesChecked);
+                $('#remover').prop('disabled', !hasAssinantesChecked);
              });
 
              $('.checkboxItem').on('click', function() {
                 var hasAssinantesChecked = hasAssChecked();
-                $('#removeAssinantes').prop('disabled', !hasAssinantesChecked);
+                $('#remover').prop('disabled', !hasAssinantesChecked);
              });
 
              function hasAssChecked()
@@ -52,14 +52,19 @@
                 return flag;
              }
 
-            $('#removeAssinantes').on('click', function() {
-                var ids = ""
+            $('#remover').on('click', function() {
+                var ids = '';
+
+                if (! confirm('Você deseja realmente apagar este assinante?')) {
+                    return false;
+                }
+
                 $('.checkboxItem').each(function(index, elm) {
                     if ($(elm).is(':checked') === true) {
-                        ids = ids + $(elm).val() + '/';
+                        ids = ids + $(elm).val() + '|';
                     }
                 });
-                $('#assinantesMarcados').val(ids);
+                $('#assinantes_marcados').val(ids);
             });
 
         });

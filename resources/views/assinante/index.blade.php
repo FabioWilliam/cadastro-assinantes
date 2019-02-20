@@ -11,10 +11,10 @@
     <form action="{{ route('assinantes.batch') }}" method="POST" class="form-list">
         @csrf
         @method('DELETE')
-        <input type="hidden" id="assinantesMarcados" name="assinantesMarcados" value="">
+        <input type="hidden" id="assinantes_marcados" name="assinantes_marcados" value="">
         <div class="actions py-2">
             <a href="{{ route('assinantes.create') }}" class="btn btn-primary">Criar Assinante</a>
-            <input type="submit" id="removeAssinantes" value="Excluir Assinantes" class="btn btn-danger" onclick="javascript: return confirm('Você deseja realmente apagar este assinante?')" disabled>
+            <input type="submit" id="remover" value="Excluir Assinantes" class="btn btn-danger" disabled>
         </div>
     </form>
     <table class="table table-striped">

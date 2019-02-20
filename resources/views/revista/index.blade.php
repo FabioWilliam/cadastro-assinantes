@@ -33,7 +33,10 @@
                 <td>
                     <img src="capas/{{ $revista->capa }}" width="80">
                 </td>
-                <td>{{ $revista->titulo }}</td>
+                <td>
+                    <a href="{{ $revista->site }}" target="_blank">
+                    {{ $revista->titulo }}</a>
+                </td>
                 <td>{{ $revista->getDescricaoReduzida() }}</td>
                 <td>R$ {{ $revista->valor }}</td>
                 <td>{{ $revista->vigencia }}</td>
