@@ -12,10 +12,7 @@
 */
 
 Route::redirect('/', 'assinantes');
+Route::delete('assinantes/batch', 'AssinanteController@batch')->name('assinantes.batch');
 Route::resource('assinantes', 'AssinanteController');
+
 Route::resource('revistas', 'RevistaController');
-Route::post('excluir-assinantes', function ()
-    {
-        return 'Destroy Batch';
-    }
-);

@@ -31,12 +31,12 @@
                 $(".checkboxItem").prop('checked', flag);
 
                 var hasAssinantesChecked = hasAssChecked();
-                $('#remove').prop('disabled', !hasAssinantesChecked);
+                $('#removeAssinantes').prop('disabled', !hasAssinantesChecked);
              });
 
              $('.checkboxItem').on('click', function() {
                 var hasAssinantesChecked = hasAssChecked();
-                $('#remove').prop('disabled', !hasAssinantesChecked);
+                $('#removeAssinantes').prop('disabled', !hasAssinantesChecked);
              });
 
              function hasAssChecked()
@@ -51,8 +51,18 @@
 
                 return flag;
              }
-        });
 
+            $('#removeAssinantes').on('click', function() {
+                var ids = ""
+                $('.checkboxItem').each(function(index, elm) {
+                    if ($(elm).is(':checked') === true) {
+                        ids = ids + $(elm).val() + '/';
+                    }
+                });
+                $('#assinantesMarcados').val(ids);
+            });
+
+        });
     </script>
     <style>
 

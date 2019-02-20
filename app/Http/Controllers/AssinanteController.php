@@ -132,8 +132,9 @@ class AssinanteController extends Controller
      * @param  \App\Assinante  $assinante
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Assinante $assinante)
+    public function destroy(ssinante $assinante)
     {
+
         $nome = $assinante->nome;
 
         Mail::to('marcelgsantos@editora3.com.br')->send(
@@ -147,4 +148,24 @@ class AssinanteController extends Controller
             ->withInput()
             ->with('message', 'O assinante ' . $nome . ' foi removido com sucesso!');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Assinante  $assinante
+     * @return \Illuminate\Http\Response
+     */
+    public function batch(Request $request)
+    {
+        if ($request->has('assinantesMarcados'))
+        {
+            $array_to_delete = explode('/', $request->assinantesMarcados);
+            Assinante::destroy($array_to_delete);
+
+            return redirect()
+            ->route('assinantes.index')
+            ->with('message', 'Assinantes removidos com sucesso!');
+        }
+    }
+
 }
