@@ -136,6 +136,15 @@
     </div>
 </div>
 <div class="form-group row">
+    <label for="ativo" class="col-4 col-form-label">Ativo</label>
+    <div class="col-6">
+        <div class="form-check" style="padding-top: 8px">
+            <input type="checkbox" name="ativo" id="ativo" value="1"
+                {{ old('ativo', $assinante->ativo ?? '') == '1' ? 'checked' : ''}} class="form-check-input">
+        </div>
+    </div>
+</div>
+<div class="form-group row">
     <label for="outras_informacoes" class="col-4 col-form-label">Outras Informações <span class="field-optional">(opcional)</span></label>
     <div class="col-7">
         <textarea name="outras_informacoes" id="outras_informacoes" class="form-control" cols="30" rows="4" maxlength="500">{{ old('outras_informacoes', $assinante->outras_informacoes ?? '') }}</textarea>

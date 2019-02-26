@@ -35,6 +35,7 @@ $factory->define(App\Assinante::class, function () use ($faker) {
         'interesses' => $chosenInteresses,
         'estado' => $faker->stateAbbr(),
         'aceita_receber_informacoes' => $faker->randomElement([true, false]),
+        'ativo' => $faker->randomElement([true, false]),
         'outras_informacoes' => $faker->randomElement([$text, null]),
     ];
 });

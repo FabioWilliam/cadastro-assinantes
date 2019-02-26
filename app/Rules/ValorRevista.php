@@ -3,7 +3,6 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Facades\Log;
 
 class ValorRevista implements Rule
 {
@@ -27,7 +26,6 @@ class ValorRevista implements Rule
     public function passes($attribute, $value)
     {
 
-        Log::debug($value);
         $value = str_replace('R$', '', $value);
         $value = str_replace('$ ', '', $value);
         $value = str_replace('$', '', $value);

@@ -24,12 +24,25 @@ class AssinanteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $assinantes = Assinante::orderBy('id', 'DESC')->paginate(10);
+        $status = $request->input('status', 'todos');
+
+        if (! in_array($status, ['todos', 'ativo', 'inativo'])) {
+            redirect()->route('assinantes.index');
+        }
+
+        if ($status == 'todos')
+        {
+            $assinantes = Assinante::orderBy('id', 'DESC')->paginate(10);
+        } else {
+            $ativo = ($status == 'ativos') ? 1 : 0;
+            $assinantes = Assinante::where('ativo' , $ativo)->orderBy('id', 'DESC')->paginate(10);
+        }
 
         return view('assinante.index', [
-            'assinantes' => $assinantes
+            'assinantes' => $assinantes,
+            'status' => $status,
         ]);
     }
 
@@ -60,6 +73,19 @@ class AssinanteController extends Controller
     public function store(StoreAssinanteRequest $request)
     {
         $validated = $request->validated();
+        if (! $request->has('ativo'))
+        {
+            $request->merge([
+                'ativo' => '0',
+            ]);
+        }
+
+        if (! $request->has('aceita_receber_informacoes'))
+        {
+            $request->merge([
+                'aceita_receber_informacoes' => '0',
+            ]);
+        }
 
         $assinante = Assinante::create($request->all());
 
@@ -118,6 +144,21 @@ class AssinanteController extends Controller
     {
         $validated = $request->validated();
 
+
+        if (! $request->has('ativo'))
+        {
+            $request->merge([
+                'ativo' => '0',
+            ]);
+        }
+
+        if (! $request->has('aceita_receber_informacoes'))
+        {
+            $request->merge([
+                'aceita_receber_informacoes' => '0',
+            ]);
+        }
+
         $assinante->update($request->all());
 
         return redirect()
@@ -135,9 +176,8 @@ class AssinanteController extends Controller
     public function destroy(Assinante $assinante)
     {
         $nome = $assinante->nome;
-        $email = $assinante->email;
 
-        Mail::to($email)->send(
+        Mail::to($assinante->email)->send(
             new AssinanteRemovido($assinante)
         );
 
@@ -164,7 +204,7 @@ class AssinanteController extends Controller
 
             return redirect()
                 ->route('assinantes.index')
-                ->with('message', 'Assinantes removidos com sucesso!');
+                ->with('message', 'Assinante(s) removido(s) com sucesso!');
         }
     }
 

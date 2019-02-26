@@ -4,7 +4,6 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use App\Repository\ListasRepository;
-use Illuminate\Support\Facades\Log;
 
 class Vigencia implements Rule
 {

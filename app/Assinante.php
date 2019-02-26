@@ -48,4 +48,10 @@ class Assinante extends Model
     {
         $this->attributes['aceita_receber_informacoes'] = ($value == '1') ? 1 : 0;
     }
+
+    public function setStatusAttribute($value)
+    {
+        $this->attributes['ativo'] = ($value == 'ativo') ? true : false;
+    }
+
 }

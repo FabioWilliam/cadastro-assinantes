@@ -83,6 +83,12 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="ativo" class="col-4 col-form-label">Ativo</label>
+            <div class="col-2"  style="padding-top: 8px">
+                <input type="text" class="form-control" value="{{ $assinante->ativo == '1' ? 'Sim' : 'Não' }}" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="outras_informacoes" class="col-4 col-form-label">Outras Informações</label>
             <div class="col-7 text-muted">
                 {{ $assinante->outras_informacoes }}

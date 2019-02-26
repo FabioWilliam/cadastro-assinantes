@@ -15,6 +15,13 @@
         <div class="actions py-2">
             <a href="{{ route('assinantes.create') }}" class="btn btn-primary">Criar Assinante</a>
             <input type="submit" id="remover" value="Excluir Assinantes" class="btn btn-danger" disabled>
+            <div class="form-group">
+                <select class="form-control col-2" id="search_ativo" name="search_ativo">
+                    <option value="todos" {{ $status == 'todos' ? 'selected' : '' }}>Todos</option>
+                    <option value="ativos" {{ $status == 'ativos' ? 'selected' : '' }}>Ativos</option>
+                    <option value="inativos" {{ $status == 'inativos' ? 'selected' : '' }}>Inativos</option>
+                </select>
+            </div>
         </div>
     </form>
     <table class="table table-striped">
@@ -32,7 +39,7 @@
             </tr>
         </thead>
         <tbody>
-                @foreach ($assinantes as $assinante)
+            @foreach ($assinantes as $assinante)
                 <tr>
                     <td>
                         <input type="checkbox" name="assinante[]" class="checkboxItem" value="{{ $assinante->id }}">
@@ -52,8 +59,9 @@
                         </form>
                     </td>
                 </tr>
-                @endforeach
-            </tbody>
-        </table>
-    {{ $assinantes->links() }}
+            @endforeach
+        </tbody>
+    </table>
+    {{ $assinantes->appends(['status' => $status])->links() }}
+
 @endsection

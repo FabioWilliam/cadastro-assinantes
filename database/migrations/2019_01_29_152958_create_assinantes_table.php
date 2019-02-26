@@ -33,6 +33,7 @@ class CreateAssinantesTable extends Migration
             $table->string('telefone', 15);
             $table->string('interesses', 250);
             $table->boolean('aceita_receber_informacoes')->default(false);
+            $table->boolean('ativo')->default(true);
             $table->text('outras_informacoes', 500)->nullable();
             $table->timestamps();
         });
