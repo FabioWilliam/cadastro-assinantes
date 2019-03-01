@@ -35,7 +35,7 @@ class UpdateRevistaRequest extends FormRequest
             'valor'     => ['required', new ValorRevista],
             'vigencia'  => ['required', new Vigencia],
             'site'      => 'url',
-            'capa'      =>  "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            'capa'      =>  ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'assuntos'  => 'required|array|min:2',
             'observacoes' => 'nullable|max:500',
         ];

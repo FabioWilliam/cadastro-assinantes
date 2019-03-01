@@ -116,14 +116,18 @@ class RevistaController extends Controller
      */
     public function update(UpdateRevistaRequest $request, Revista $revista)
     {
-        $file = $request->file('capa');
-        $fileName = time() . '-' . $file->getClientOriginalName();
-        $filePath = public_path('capas');
-
-        $file->move($filePath, $fileName);
-
         $input = $request->all();
-        $input['capa'] = $fileName;
+
+        if ($request->hasfile('capa'))
+        {
+            $file = $request->file('capa');
+            $fileName = time() . '-' . $file->getClientOriginalName();
+            $filePath = public_path('capas');
+
+            $file->move($filePath, $fileName);
+            $input = $request->all();
+            $input['capa'] = $fileName;
+        }
 
         $revista->update($input);
 
