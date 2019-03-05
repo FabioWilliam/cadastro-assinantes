@@ -22,7 +22,7 @@ Tokenizer PHP Extension
 XML PHP Extension
 Ctype PHP Extension
 JSON PHP Extension
-ext-zip
+php-zip
 BCMath PHP Extension
 ```
 
