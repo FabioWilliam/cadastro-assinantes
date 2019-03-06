@@ -23,6 +23,7 @@ XML PHP Extension
 Ctype PHP Extension
 JSON PHP Extension
 php-zip
+php-xml
 BCMath PHP Extension
 ```
 
