@@ -67,7 +67,7 @@ php artisan migrate
 ### 8. Criação do controller
 
 ```bash
-php artisan make:controller Assinante -r -m=Assinante
+php artisan make:controller Assinante --resource --model=Assinante
 ```
 ### 9. Adicionar e testar a rota para o controller
 
@@ -118,7 +118,7 @@ App\Assinante::make(1); # cria e exibe uma model na memória
 App\Assinante::create(1); # cria e persiste uma model na base de dados
 ```
   
-### 13. Criação dos seeds para população dos dados na base de dados
+### 13. Criação dos seeds para população dos dados na base de dados. Não se esqueça de atualizar o arquivo DatabaseSeeder.php
 
 ```bash
 php artisan make:seeder AssinantesTableSeeder

@@ -114,6 +114,10 @@
                 window.location.href = url;
             });
 
+            $('#cep').on('change', function() {
+
+            }
+            )
         });
     </script>
     <style>

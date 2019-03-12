@@ -54,7 +54,6 @@ class ListasRepository {
         ];
     }
 
-
     public function getEstadosList()
     {
         return [
@@ -88,4 +87,13 @@ class ListasRepository {
             'EX' => 'Estrangeiro',
         ];
     }
+
+    public function getSiglasList()
+    {
+        return [
+        'AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT',
+        'MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR',
+        'SC','SP','SE','TO','EX'];
+    }
+
 }
