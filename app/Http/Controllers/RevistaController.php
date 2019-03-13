@@ -69,7 +69,10 @@ class RevistaController extends Controller
         return redirect()
             ->route('revistas.index')
             ->withInput()
-            ->with('message', 'A revista ' . $revista->titulo . ' foi incluída com sucesso!');
+            ->with([
+                'status' => true,
+                'message' => "A revista $revista->titulo foi incluída com sucesso!"
+            ]);
     }
 
     /**
@@ -134,7 +137,10 @@ class RevistaController extends Controller
         return redirect()
             ->route('revistas.index')
             ->withInput()
-            ->with('message', 'A revista ' . $revista->titulo . ' foi alterada com sucesso!');
+            ->with([
+                'status' => true,
+                'message' => "A revista $revista->titulo foi alterada com sucesso!"
+            ]);
     }
 
     /**
@@ -152,6 +158,9 @@ class RevistaController extends Controller
         return redirect()
             ->route('revistas.index')
             ->withInput()
-            ->with('message', 'A Revista  ' . $nome . ' foi removida com sucesso!');
+            ->with([
+                'status' => true,
+                'message'=> "A Revista $nome foi removida com sucesso!"
+            ]);
     }
 }

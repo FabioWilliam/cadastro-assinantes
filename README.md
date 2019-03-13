@@ -308,3 +308,47 @@ O Helpers são pequenas mensagens que auxiliam o usuário de como preencher espe
 Valide cada para do sistema, teste unitário
 Valide todo o sistema, teste completo.
 Peça a outra pessoa para testar você se surpreenderá com que os usuários conseguem fazer.
+
+### 33. Criação arquivo de Ceps
+Seguir o mesmo modelos dos assinantes e revistas, montar o factory
+
+### 34. Jquery preenchimento automático do endereço, através do CEP
+Para que se atribua um conteudo a um campo do formulário é necessiario criar um ID para este campo, com isso conseguimos buscar a informação do seu conteudo *value*
+ex:
+```javascript
+ var cep = $('#cep').val();
+``` 
+Para atribuir o conteúdo ao Html usamos
+```javascript
+$('#bairro').val(response.data.bairro);
+``` 
+
+
+### 35. Desenvolvimento do Botão de manutenção para enviar emails para o usuário informando que o sistema estará em manutenção
+Foi criada uma rota específica
+``` 
+Route::get('enviar-email/{id}', 'MailerController@emailManutencao')->name('email.manutencao');
+``` 
+MailerController -> Controller que irá gerenciar o envio do email
+emailManutencao -> Nome do método que irá receber a request
+email.manutencao -> Nome associado a esta rota (utilizada no blade de assinantes)
+enviar-email -> Nome da rota
+{id} - informação que será passada para o método emailManutencao
+
+### 36. Criação da classe ManutencaoMail usada para enviar o email
+php artisan make:mail ManutencaoMail --markdown=ManutencaoMail
+
+### 37. Criação de comandos para enviar email de manutênção para um determinado assinante
+```sh
+php artisan make:command EmailManutencaoCommand --command=email:manutencao
+``` 
+> EmailManutencaoCommand Nome da Classe que ira extender command.
+
+> email.mannutencao - é a assinatura do commando 
+
+##### exemplo do commando final - php artisan
+```sh
+php artisan email:manutencao teobaldo77@example.net --urgente
+```
+--urgente Tratado como parâmetro opcional, 
+    

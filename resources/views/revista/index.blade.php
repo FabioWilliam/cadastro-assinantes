@@ -3,8 +3,8 @@
 @section('content')
     <h1 class="h2 mb-2">Lista de Revistas</h1>
 
-    @if (session('message'))
-        <div class="alert alert-success">
+    @if (Session::has('message'))
+        <div class="alert alert-{{ session('status') ? 'success' : 'danger'}}">
             {{ session('message') }}
         </div>
     @endif

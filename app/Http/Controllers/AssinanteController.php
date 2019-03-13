@@ -92,7 +92,10 @@ class AssinanteController extends Controller
         return redirect()
             ->route('assinantes.index')
             ->withInput()
-            ->with('message', 'O assinante ' . $assinante->nome . ' foi incluído com sucesso!');
+            ->with([
+                'status' => true,
+                'message' => "O assinante $assinante->nome foi incluído com sucesso!"
+            ]);
     }
 
     /**
@@ -164,7 +167,10 @@ class AssinanteController extends Controller
         return redirect()
             ->route('assinantes.index')
             ->withInput()
-            ->with('message', 'O assinante ' . $assinante->nome . ' foi alterado com sucesso!');
+            ->with([
+                'status' => true,
+                'message' => "O assinante $assinante->nome foi alterado com sucesso!"
+            ]);
     }
 
     /**
@@ -186,7 +192,10 @@ class AssinanteController extends Controller
         return redirect()
             ->route('assinantes.index')
             ->withInput()
-            ->with('message', 'O assinante ' . $nome . ' foi removido com sucesso!');
+            ->with([
+                'status' => true,
+                'message' =>  "O assinante $nome foi removido com sucesso!"
+            ]);
     }
 
     /**
@@ -204,7 +213,10 @@ class AssinanteController extends Controller
 
             return redirect()
                 ->route('assinantes.index')
-                ->with('message', 'Assinante(s) removido(s) com sucesso!');
+                ->with([
+                    'status' => true,
+                    'message' => 'Assinante(s) removido(s) com sucesso!'
+                ]);
         }
     }
 

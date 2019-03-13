@@ -3,27 +3,28 @@
 @section('content')
     <h1 class="h2 mb-2">Lista de Assinantes</h1>
 
-    @if (session('message'))
-    <div class="alert alert-success">
-        {{ session('message') }}
-    </div>
+    @if (Session::has('message'))
+        <div class="alert alert-{{ session('status') ? 'success' : 'danger'}}">
+            {{ session('message') }}
+        </div>
     @endif
+
     <form action="{{ route('assinantes.batch') }}" method="POST" class="form-list">
         @csrf
         @method('DELETE')
         <input type="hidden" id="assinantes_marcados" name="assinantes_marcados" value="">
-        <div class="actions py-2">
-            <a href="{{ route('assinantes.create') }}" class="btn btn-primary">Criar Assinante</a>
-            <input type="submit" id="remover" value="Excluir Assinantes" class="btn btn-danger" disabled>
-            <div class="form-group">
-                <select class="form-control col-2" id="search_ativo" name="search_ativo">
-                    <option value="todos" {{ $status == 'todos' ? 'selected' : '' }}>Todos</option>
-                    <option value="ativos" {{ $status == 'ativos' ? 'selected' : '' }}>Ativos</option>
-                    <option value="inativos" {{ $status == 'inativos' ? 'selected' : '' }}>Inativos</option>
-                </select>
-            </div>
-        </div>
     </form>
+
+    <div class="actions py-2">
+        <a href="{{ route('assinantes.create') }}" class="btn btn-primary">Criar Assinante</a>
+        <input type="submit" id="remover" value="Excluir Assinantes" class="btn btn-danger" disabled>
+        <select class="form-control" id="search_ativo" name="search_ativo" style="display: inline-block; float: right; right: 0; width: 200px">
+            <option value="todos" {{ $status == 'todos' ? 'selected' : '' }}>Todos</option>
+            <option value="ativos" {{ $status == 'ativos' ? 'selected' : '' }}>Ativos</option>
+            <option value="inativos" {{ $status == 'inativos' ? 'selected' : '' }}>Inativos</option>
+        </select>
+    </div>
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -57,6 +58,7 @@
                             @csrf
                             <button type="submit" class="btn btn-outline-primary btn-sm" onclick="javascript: return confirm('Você deseja realmente apagar este assinante?')">remover</button>
                         </form>
+                        <a href="{{ route('email.manutencao', ['id' => $assinante->id]) }}" class="btn btn-outline-primary btn-sm">e-mail</a>
                     </td>
                 </tr>
             @endforeach

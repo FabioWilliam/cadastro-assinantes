@@ -53,6 +53,7 @@
     <div class="col-3">
         <input type="text" name="cep" id="cep" class="form-control" maxlength="9" value="{{ old('cep', $assinante->cep ?? '') }}" placeholder="02435-090">
     </div>
+    <span id="cep_nao_encontrado" class="text-info"></span>
 </div>
 <div class="form-group row">
     <label for="tipo_logradouro" class="col-4 col-form-label">Endereço</label>

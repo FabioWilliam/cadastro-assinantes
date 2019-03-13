@@ -10,6 +10,11 @@
     <script>
 
         $(document).ready(function() {
+
+            var config = {
+                apiUrl: 'http://localhost:8000/'
+            };
+
             $('#cpf').inputmask('999.999.999-99');
             $('#data_nascimento').inputmask('99/99/9999');
             $('#cep').inputmask('99999-999');
@@ -67,34 +72,6 @@
                 $('#assinantes_marcados').val(ids);
             });
 
-            // function setParam(param, value)
-            // {
-            //     var url = window.location.href;
-            //     var urlFragments = url.split('?');
-            //     var hasQueryString = !(typeof urlFragments[1] === 'undefined');
-            //     var queryString = hasQueryString ? urlFragments[1] : '';
-            //     var params = hasQueryString ? queryString.split('&') : [];
-            //     var queryObject = {};
-            //     var serializedQueryString = '';
-
-            //     params.forEach(function(value) {
-            //         var current = value.split('=');
-            //         queryObject[current[0]] = current[1];
-            //     });
-
-            //     queryObject[param] = value;
-            //     serializedQueryString = $.param(queryObject);
-
-            //     return serializedQueryString;
-            // }
-
-            // $('#search_ativo').on('change', function(e) {
-            //     var status = $(e.target).val();
-            //     var querString = setParam('status', status);
-
-            //     location.href = location.origin + location.pathname + '?' + querString;
-            // });
-
             $('#search_ativo').on('change', function() {
                 var status = $('#search_ativo').val();
                 var search = window.location.search;
@@ -116,8 +93,36 @@
 
             $('#cep').on('change', function() {
 
+                var cep = $('#cep').val();
+                cep = cep.replace('-', '');
+
+                var req = $.ajax({
+                    method: 'GET',
+                    url: config.apiUrl + '/api/endereco/' + cep
+                });
+                req
+                    .done(fillAddress)
+                    .catch(showError)
+                    .fail(showFailError);
+            });
+
+            function fillAddress(response) {
+                $('#tipo_logradouro').val(response.data.tipo_logradouro);
+                $('#logradouro').val(response.data.logradouro);
+                $('#bairro').val(response.data.bairro);
+                $('#cidade').val(response.data.cidade);
+                $('#estado').val(response.data.estado);
+                $('#cep_nao_encontrado').html('');
+            };
+
+            function showError(response) {
+                var data = response.responseJSON;
+                $('#cep_nao_encontrado').html(data.message);
             }
-            )
+
+            function showFailError() {
+                alert('Houve um erro grave na sua aplicação.');
+            }
         });
     </script>
     <style>
