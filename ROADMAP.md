@@ -29,3 +29,7 @@
 * (OK) Implementar ação de remoção
 * (OK) Implementar página de visualização metodo show
 * Adicionar máscaras aos campos necessários
+* (OK) Remover máscara do valor da visualização de revistas e colocar formatação na view
+* (OK) Alinhar o valor à esquerda e colocar R$ no início do valor
+* (OK) Adicionar a imagem da capa em uma div e aumentar o tamanho da imagem para 120px
+* (OK) Alinhar o valor à esquerda e colocar R$ no início do valor da máscara na página de edição e criação 

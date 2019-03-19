@@ -50,7 +50,9 @@
         </div>
         <div class="form-group row">
             <label for="capa" class="col-4 col-form-label">Capa</label>
-            <img src="../../capas/{{ $revista->capa }}" class="rounded mx-auto d-block" height="80">
+            <div>
+                <img src="../../capas/{{ $revista->capa }}" class="rounded" height="120" style="margin-left: 16px">
+            </div>
         </div>
         <div class="form-group row">
             <label for="participa_de_promocao" class="col-4 col-form-label">Participa de Promoção</label>
