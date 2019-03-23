@@ -9,15 +9,15 @@
         </div>
     @endif
 
-    <form action="{{ route('assinantes.batch') }}" method="POST" class="form-list">
+    <form id="excluir_assinantes" action="{{ route('assinantes.batch') }}" method="POST" class="form-list">
         @csrf
         @method('DELETE')
-        <input type="hidden" id="assinantes_marcados" name="assinantes_marcados" value="">
+        <input type="hidden" value="" id="assinantes_marcados" name="assinantes_marcados">
     </form>
 
     <div class="actions py-2">
         <a href="{{ route('assinantes.create') }}" class="btn btn-primary">Criar Assinante</a>
-        <input type="submit" id="remover" value="Excluir Assinantes" class="btn btn-danger" disabled>
+        <input type="button" id="remover" value="Excluir Assinantes" class="btn btn-danger" disabled>
         <select class="form-control" id="search_ativo" name="search_ativo" style="display: inline-block; float: right; right: 0; width: 200px">
             <option value="todos" {{ $status == 'todos' ? 'selected' : '' }}>Todos</option>
             <option value="ativos" {{ $status == 'ativos' ? 'selected' : '' }}>Ativos</option>

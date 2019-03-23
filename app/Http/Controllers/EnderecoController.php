@@ -9,6 +9,16 @@ class EnderecoController extends Controller
 {
     public function show($cep, Request $request)
     {
+        $token = $request->header('X-Token');
+
+        if ($token != config('api.token'))
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'Token inválido.',
+            ], 401);
+        }
+
         $endereco = Cep::where('cep', $cep)->get()->first();
 
         if ($endereco == null) {

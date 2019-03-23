@@ -61,6 +61,7 @@
                     }
                 });
                 $('#assinantes_marcados').val(ids);
+                $('#excluir_assinantes').submit();
             });
 
             $('#search_ativo').on('change', function() {

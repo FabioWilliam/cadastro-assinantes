@@ -352,3 +352,34 @@ php artisan email:manutencao teobaldo77@example.net --urgente
 ```
 --urgente Tratado como parâmetro opcional, 
     
+### 38 - Testes
+
+* Os tipos de testes são:
+  * **testes unitários**
+    * São testes feitos de **forma isolada** que garantem o funcionamentos dos métodos e classes.
+  * **testes de integração**
+    * São testes que garantem o funcionamento correto da **comunicação** entre os componentes do sistema.
+  * **testes funcionais**
+    * são testes que garantem o funcionamento correto de uma **funcionalidade da aplicação**.
+    * Por exemplo:
+        * inclusão de um cliente no cadastro
+        * testar um entrypoint de uma API
+        * testar o envio de um e-mail
+* As **classes de testes** devem terminar com o sufixo `Test`, obrigatoriamente.
+* Os **métodos de testes** devem ser obrigatoriamente públicos e começarem com o prefixo `test`. Por exemplo, `testApiSuccess()`.
+* A ferramenta mais utilizada para a **execução de testes** em PHP é o PHPUnit.
+* O PHPUnit vem por padrão na maioria dos frameworks como Laravel e Symfony.
+* Para criar um classe para **testes unitários** no Laravel utiliza-se o comando `php artisan make:test MyUnitTest --unit`.
+* Para criar um classe para **testes funcionais** no Laravel utiliza-se o comando `php artisan make:test MyFunctionalTest`.
+ * Para executar os testes utilizando o PHPUnit utiliza-se o comando `vendor/bin/phpunit`.
+* O exemplo de uma execução de testes no Laravel com o PHPUnit:
+```sh
+PHPUnit 7.5.7 by Sebastian Bergmann and contributors.
+
+...                                                                 3 / 3 (100%)
+
+Time: 239 ms, Memory: 16.00 MB
+
+OK (3 tests, 4 assertions)
+```
+* No exemplo foram feitos 3 testes com 4 assertions.
