@@ -1,17 +1,12 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Cep;
+use Illuminate\Database\Seeder;
 
 class CepsTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        factory(App\Cep::class, 20)->create();
+        factory(Cep::class, 20)->create();
     }
 }

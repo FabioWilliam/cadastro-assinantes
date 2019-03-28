@@ -1,15 +1,10 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Revista;
+use Illuminate\Database\Seeder;
 
 class RevistasTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         factory(Revista::class, 15)->create();

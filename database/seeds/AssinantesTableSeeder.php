@@ -1,17 +1,12 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Assinante;
+use Illuminate\Database\Seeder;
 
 class AssinantesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        factory(Assinante::class, 30)->create();
+        factory(Assinante::class, 10)->create();
     }
 }

@@ -9,7 +9,7 @@ $factory->define(App\Revista::class, function (Faker $faker) {
     $seed2 = ['OLHOS', 'NARIZ', 'MINHA BOCA', 'SUA TV', 'NOSSO SOFA', 'A PORTA', 'NOSSA CASA', 'O SEU JARDIM', 'O COMPUTADOR'];
     $titulo = $faker->randomElement($seed0) . ' ' . $faker->randomElement($seed1) . ' ' .$faker->randomElement($seed2);
     $itens = explode(" ",$titulo);
-    $codigo = substr($itens[0],0,1) . substr($itens[1],0,1) . substr($itens[2],0,1);
+    $codigo = strtoupper($faker->randomLetter()) . strtoupper($faker->randomLetter()) . strtoupper($faker->randomLetter());
     $capas = ['bicycling.png', 'dinheiro-rural.png', 'go-outside.png', 'hardcore.png',
                 'istoe-dinheiro.png', 'istoe.png', 'menu.png', 'motor-show.png', 'planeta.png',
                 'runners-world.png', 'select.png', 'womens-health.png'];

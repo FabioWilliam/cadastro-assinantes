@@ -1,6 +1,8 @@
 <?php
 
+use App\Cep;
 use Faker\Generator as Faker;
+
 $faker = \Faker\Factory::create('pt_BR');
 
 $factory->define(App\Assinante::class, function () use ($faker) {
@@ -24,7 +26,9 @@ $factory->define(App\Assinante::class, function () use ($faker) {
         'cpf' => $faker->cpf,
         'sexo'=> $sexo,
         'data_nascimento' => $data_nascimento,
-        'cep' => $faker->postcode,
+        'cep' => function () {
+            return factory(App\Cep::class)->create()->cep;
+        },
         'tipo_logradouro' => $faker->randomElement(['R', 'AV', 'AL', 'Q', 'RES', 'OUTROS']),
         'logradouro' => $faker->streetName,
         'numero' => $faker->randomElement([$numero, $numero, $numero, 'SN']),

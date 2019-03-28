@@ -2,12 +2,18 @@
 
 namespace App;
 
+use App\Assinatura;
 use Illuminate\Database\Eloquent\Model;
 use Hash;
 
 class Assinante extends Model
 {
     protected $guarded = [];
+
+    public function assinaturas()
+    {
+        return $this->hasMany('App\Assinatura');
+    }
 
     public function setSenhaAttribute($password)
     {
