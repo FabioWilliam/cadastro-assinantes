@@ -33,3 +33,12 @@
 * (OK) Alinhar o valor à esquerda e colocar R$ no início do valor
 * (OK) Adicionar a imagem da capa em uma div e aumentar o tamanho da imagem para 120px
 * (OK) Alinhar o valor à esquerda e colocar R$ no início do valor da máscara na página de edição e criação 
+03/04/19
+* (OK) Tratar o status da Assinatura na index.blade
+* (OK) Criar um Repository para as revistas, alterar o AssinaturasController
+* Estudar o Jquery para consultar o assinante pelo nome no cadastramento da assinatura
+* Implementar a injeção de dependencia nos métodos controler de assinaturas
+* Tratar o Unique no codigo da Revista, (Factory)
+* Tratar a exclusão de um assinante, pode ser que ele tenha uma assinatura atrelada a este assinante neste caso o cliente não pode ser excluido
+* Inibir o campo Valor da Revista na tela de assinatura, trazer o valor quando o usuário escolher uma revista utilizando o campo Revista.
+* 

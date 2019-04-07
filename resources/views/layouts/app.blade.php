@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/inputmask@4.0.6/dist/jquery.inputmask.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.9/jquery.autocomplete.js"></script>
     <script>
 
         $(document).ready(function() {
@@ -60,8 +61,8 @@
                         ids = ids + $(elm).val() + '|';
                     }
                 });
-                $('#assinantes_marcados').val(ids);
-                $('#excluir_assinantes').submit();
+                $('#itens_marcados').val(ids);
+                $('#excluir_itens_do_formulario').submit();
             });
 
             $('#search_ativo').on('change', function() {
@@ -117,6 +118,26 @@
             }
         });
     </script>
+
+    <script>
+    //    Assinatura
+        $(document).ready(function() {
+            $('#revista').on('change', function(e) {
+                var valor = $('option:selected', this).data('valor');
+                $('#valor').val(valor);
+            });
+
+            $('#nome_assinante').autocomplete({
+                serviceUrl: 'http://localhost:8000/api/assinante/',
+                minLength: 1,
+                onSelect: function (suggestion) {
+                    var idAssinante = suggestion.data;
+                    $('#assinante_id').val(idAssinante);
+                }
+            });
+        });
+    </script>
+
     <style>
 
         body {
@@ -156,6 +177,12 @@
             margin-left: 5px;
         }
 
+        .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+        .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+        .autocomplete-selected { background: #F0F0F0; }
+        .autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+        .autocomplete-group { padding: 2px 5px; }
+        .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
     </style>
     <title>Sistema de Assinantes</title>
 </head>

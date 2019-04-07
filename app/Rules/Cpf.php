@@ -6,15 +6,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class Cpf implements Rule
 {
-    /**
-     * Create a new rule instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+
 
     /**
      * Determine if the validation rule passes.

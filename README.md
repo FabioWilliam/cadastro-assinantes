@@ -383,3 +383,44 @@ Time: 239 ms, Memory: 16.00 MB
 OK (3 tests, 4 assertions)
 ```
 * No exemplo foram feitos 3 testes com 4 assertions.
+
+### 39 - Model Assinatura
+Nesta model vamos abordar alguns conceitos novos:
+###### Repository:
+Este classe é responsável por fazer consultas ao bancos de dados e retornar os objetos ao controller, desta forma o controller fica "enxuto".
+ex RevistasRepository
+```php
+<?php
+
+namespace App\Repository;
+use App\Revista;
+
+class RevistasRepository {
+
+    public function getArrayComTodasRevistas()
+    {
+        return Revista::select('id','codigo','titulo','valor')->get();
+    }
+
+    public function getListagemPaginate()
+    {
+        return Revista::orderBy('id', 'DESC')->paginate(10);
+    }
+}
+``` 
+
+### 40 - Injeção de depêndencia por construtor
+#### Vantagens
+**As dependências da classe ficam expostas:** as dependências da classe são mais óbvias se comparadas ao método de injeção por campo ou método, no qual as classes ficam próximas a uma caixa preta. 
+**Mock é mais fácil e confiável:** comparado ao injeção por campo, é mais fácil mockar as dependências em um teste unitário
+
+#### Desvantagens
+**Aumenta a dificuldade de mockar dependências:** 
+você precisa usar frameworks de reflection para conseguir injetar as dependências no teste unitário;
+**As dependências da classe ficam ocultas:** 
+isto cria uma tendência dos desenvolvedores adicionarem mais dependências para a classe sem se preocupar com as consequências, que são: aumento do tamanho da própria classe e aumento da complexidade da mesma;
+**Ferramentas de análise de código vão te ajudar mais:** Ferramentas de análise de código, como o Sonar, podem te avisar sobre uma classe que está ficando muito complexa
+**Código independente: com menos anotações de injeção no seu código**, ele fica menos dependente do framework de injeção.
+**As dependências podem ser imutáveis**: a imutabilidade é uma qualidade bem-vinda.
+Fonte: [CWI Software](https://medium.com/cwi-software/os-benef%C3%ADcios-de-usar-inje%C3%A7%C3%A3o-por-construtor-8cd442884adc)
+ 

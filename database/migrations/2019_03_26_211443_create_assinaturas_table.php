@@ -17,10 +17,8 @@ class CreateAssinaturasTable extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('assinante_id');
             $table->unsignedBigInteger('revista_id');
-            $table->decimal('valor',5,2);
-            $table->string('status',1);
-            $table->dateTime('data_assinatura');
-            $table->string('ip',15);
+            $table->string('status', 24);
+            $table->string('ip', 15);
             $table->timestamps();
         });
     }

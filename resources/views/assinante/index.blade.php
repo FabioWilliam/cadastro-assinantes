@@ -9,10 +9,10 @@
         </div>
     @endif
 
-    <form id="excluir_assinantes" action="{{ route('assinantes.batch') }}" method="POST" class="form-list">
+    <form id="excluir_itens_do_formulario" action="{{ route('assinantes.batch') }}" method="POST" class="form-list">
         @csrf
         @method('DELETE')
-        <input type="hidden" value="" id="assinantes_marcados" name="assinantes_marcados">
+        <input type="hidden" value="" id="itens_marcados" name="itens_marcados">
     </form>
 
     <div class="actions py-2">

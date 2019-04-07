@@ -13,9 +13,10 @@ use App\Cep;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('endereco/{cep}', 'EnderecoController@show');
+*/
+Route::get('endereco/{cep}', 'AjaxController@getEndereco');
+Route::get('assinante', 'AjaxController@getListaAssinante');

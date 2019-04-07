@@ -30,6 +30,11 @@ class Assinante extends Model
         $this->attributes['interesses'] = implode(',', $value);
     }
 
+    public function getIdAsStringAttribute($value)
+    {
+        return (string)$this->id;
+    }
+
     public function getInteressesAttribute($value)
     {
         return explode(',', $value);
@@ -59,5 +64,4 @@ class Assinante extends Model
     {
         $this->attributes['ativo'] = ($value == 'ativo') ? true : false;
     }
-
 }

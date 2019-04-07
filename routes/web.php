@@ -15,5 +15,8 @@ Route::redirect('/', 'assinantes');
 Route::delete('assinantes/batch', 'AssinanteController@batch')->name('assinantes.batch');
 Route::resource('assinantes', 'AssinanteController');
 
+Route::delete('assinaturas/batch', 'AssinaturaController@batch')->name('assinaturas.batch');
+Route::resource('assinaturas', 'AssinaturaController');
+
 Route::resource('revistas', 'RevistaController');
 Route::get('enviar-email/{id}', 'MailerController@emailManutencao')->name('email.manutencao');

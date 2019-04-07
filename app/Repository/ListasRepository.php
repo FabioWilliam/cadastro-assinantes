@@ -4,6 +4,14 @@ namespace App\Repository;
 
 class ListasRepository {
 
+    public function getStatusAssinatura()
+    {
+        return [
+            'Aguardando Pagamento' => 'Aguardando Pagamento',
+            'Pago' => 'Pago',
+            'Cancelada' => 'Cancelada'];
+    }
+
     public function getAssuntosList()
     {
         return [

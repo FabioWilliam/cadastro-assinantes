@@ -116,12 +116,6 @@ class AssinanteController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Assinante  $assinante
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Assinante $assinante)
     {
         $interessesList = $this->listasRepository->getInteressesList();
@@ -146,7 +140,6 @@ class AssinanteController extends Controller
     public function update(UpdateAssinanteRequest $request, Assinante $assinante)
     {
         $validated = $request->validated();
-
 
         if (! $request->has('ativo'))
         {
@@ -206,9 +199,9 @@ class AssinanteController extends Controller
      */
     public function batch(Request $request)
     {
-        if ($request->has('assinantes_marcados'))
+        if ($request->has('itens_marcados'))
         {
-            $assinantes = explode('|', $request->assinantes_marcados);
+            $assinantes = explode('|', $request->itens_marcados);
             Assinante::destroy($assinantes);
 
             return redirect()
