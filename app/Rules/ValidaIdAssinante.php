@@ -19,6 +19,6 @@ class ValidaIdAssinante implements Rule
      */
     public function message()
     {
-        return 'Assinante inexistente, escolha um assinante válido.';
+        return 'O campo Assinante deve estar na base de dados, escolha um assinante válido.';
     }
 }

@@ -12,12 +12,12 @@ class Assinatura extends Model
 
     public function revista()
     {
-        return $this->hasOne('App\Revista','id');
+        return $this->hasOne('App\Revista', 'id');
     }
 
     public function assinante()
     {
-        return $this->belongsTo('App\Assinante','assinante_id','id');
+        return $this->belongsTo('App\Assinante', 'assinante_id', 'id');
     }
 
     public function getDataAssinatura()
@@ -37,6 +37,7 @@ class Assinatura extends Model
         $value = str_replace('R$', '', $value);
         $value = str_replace('$ ', '', $value);
         $value = str_replace('$', '', $value);
+
         $this->attributes['valor'] = str_replace(',', '.', $value);
     }
 

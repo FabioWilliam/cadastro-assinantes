@@ -13,11 +13,11 @@ return [
     |
     */
 
-    'array' => 'O :attribute deve ser uma lista.',
-    'email' => 'O :attribute deve ser um e-mail válido.',
+    'array' => 'O campo :attribute deve ser uma lista.',
+    'email' => 'O campo :attribute deve conter um e-mail válido.',
     'in' => 'O conteúdo escolhido do campo :attribute é inválido.',
     'url' => 'O conteúdo escolhido do campo :attribute é inválido.',
-    'active_url' => 'O :attribute não é uma URL ativa.',
+    'active_url' => 'O campo :attribute não possui uma URL ativa.',
     'max' => [
         'numeric' => 'O campo :attribute deve ter no máximo :max caracteres.',
         'string' => 'O campo :attribute deve ter no máximo :max caracteres.',
@@ -38,7 +38,7 @@ return [
         'string' => 'The :attribute deve ser maior que :value caracteres.',
         'array' => 'The :attribute deve ser mais que :value items.',
     ],
-    'required' => 'O :attribute é um campo de preenchimento obrigatório.',
+    'required' => 'O campo :attribute é de preenchimento obrigatório.',
     'same' => 'Os campos :attribute e :other devem ser iguais.',
     'unique' => 'O valor do campo :attribute já foi utilizado.',
 

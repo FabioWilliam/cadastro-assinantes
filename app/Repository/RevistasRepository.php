@@ -5,9 +5,9 @@ use App\Revista;
 
 class RevistasRepository {
 
-    public function getArrayComTodasRevistas()
+    public function getRevistas()
     {
-        return Revista::select('id','codigo','titulo','valor')->get();
+        return Revista::select('id', 'codigo', 'titulo', 'valor')->get();
     }
 
     public function getListagemPaginate()

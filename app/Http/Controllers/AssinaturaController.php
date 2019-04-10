@@ -8,7 +8,6 @@ use App\Repository\ListasRepository;
 use App\Repository\RevistasRepository;
 use Illuminate\Http\Request;
 
-
 class AssinaturaController extends Controller
 {
     private $listasRepository;
@@ -32,7 +31,8 @@ class AssinaturaController extends Controller
     public function create()
     {
         $statusAssinaturas = $this->listasRepository->getStatusAssinatura();
-        $revistas = $this->revistasRepository->getArrayComTodasRevistas();
+        $revistas = $this->revistasRepository->getRevistas();
+
         return view('assinatura.create', [
             'status' => $statusAssinaturas,
             'revistas' => $revistas,
@@ -53,14 +53,16 @@ class AssinaturaController extends Controller
         return redirect()
             ->route('assinaturas.index')
             ->with([
-                'message' => "A assinatura de $request->nome foi incluído com sucesso!"
+                'message' => "A assinatura de $request->assinante foi incluído com sucesso!",
+                'status' => 'success',
             ]);
     }
 
     public function show(Assinatura $assinatura)
     {
         $statusAssinaturas = $this->listasRepository->getStatusAssinatura();
-        $revistas = $this->revistasRepository->getArrayComTodasRevistas();
+        $revistas = $this->revistasRepository->getRevistas();
+
         return view('assinatura.show', [
             'assinatura' => $assinatura,
             'revistas' => $revistas,
@@ -72,7 +74,8 @@ class AssinaturaController extends Controller
     public function edit(Assinatura $assinatura)
     {
         $statusAssinaturas = $this->listasRepository->getStatusAssinatura();
-        $revistas = $this->revistasRepository->getArrayComTodasRevistas();
+        $revistas = $this->revistasRepository->getRevistas();
+
         return view('assinatura.edit', [
             'assinatura' => $assinatura,
             'revistas' => $revistas,
@@ -94,21 +97,22 @@ class AssinaturaController extends Controller
         return redirect()
             ->route('assinaturas.index')
             ->with([
-                'message' => "A assinatura de $request->nome foi alterada com sucesso!"
+                'message' => "A assinatura de $request->assinante foi alterada com sucesso!",
+                'status' => 'success',
             ]);
     }
 
     public function destroy(Assinatura $assinatura)
     {
-        $nome = $assinatura->assinante->nome;
+        $assinante = $assinatura->assinante->nome;
 
         $assinatura->delete();
 
         return redirect()
             ->route('assinaturas.index')
             ->with([
-                'status' => true,
-                'message' =>  "A assinatura de(a) $nome foi removida com sucesso!"
+                'status' => 'success',
+                'message' =>  "A assinatura de $assinante foi removida com sucesso!"
             ]);
 
     }

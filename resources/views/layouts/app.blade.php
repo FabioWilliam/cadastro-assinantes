@@ -127,6 +127,10 @@
                 $('#valor').val(valor);
             });
 
+            $('#nome_assinante').on('change', function() {
+                $('#assinante_id').val('');
+            });
+
             $('#nome_assinante').autocomplete({
                 serviceUrl: 'http://localhost:8000/api/assinante/',
                 minLength: 1,

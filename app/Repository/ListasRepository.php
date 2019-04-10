@@ -9,7 +9,8 @@ class ListasRepository {
         return [
             'Aguardando Pagamento' => 'Aguardando Pagamento',
             'Pago' => 'Pago',
-            'Cancelada' => 'Cancelada'];
+            'Cancelada' => 'Cancelada'
+        ];
     }
 
     public function getAssuntosList()

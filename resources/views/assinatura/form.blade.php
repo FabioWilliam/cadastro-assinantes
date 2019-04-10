@@ -1,13 +1,13 @@
 <div class="form-group row">
-    <label for="nome" class="col-4 col-form-label">Nome</label>
-    <div class="col-7">
-        <input type="text" name="nome" id="nome_assinante" class="form-control" value="{{ old('nome', $assinatura->assinante->nome ?? '') }}">
+    <label for="assinante" class="col-4 col-form-label">Assinante</label>
+    <div class="col-5">
+        <input type="text" name="assinante" id="nome_assinante" class="form-control" value="{{ old('assinante', $assinatura->assinante->nome ?? '') }}">
         <input type="hidden" name="assinante_id" id="assinante_id" value="{{ old('assinante_id', $assinatura->assinante_id ?? '') }}">
     </div>
 </div>
 <div class="form-group row">
     <label for="revista" class="col-4 col-form-label">Revista</label>
-    <div class="col-6">
+    <div class="col-5">
         <select name="revista" id="revista" class="form-control">
             <option value="">Selecione</option>
             @foreach ($revistas as $revista)

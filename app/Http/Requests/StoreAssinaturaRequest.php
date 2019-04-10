@@ -16,10 +16,14 @@ class StoreAssinaturaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required',
-            'assinante_id' => new  ValidaIdAssinante,
+            'assinante_id' => 'required',
             'revista' => 'required',
             'status' => 'required',
         ];
+    }
+
+    public function messages()
+    {
+        return ['assinante_id.required' => 'O campo assinante deve conter um assinante previamente cadastrado.'];
     }
 }

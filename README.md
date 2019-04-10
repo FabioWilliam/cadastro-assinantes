@@ -38,7 +38,7 @@ composer global require laravel/installer
 ```bash
 laravel new 'cadastro-assinantes'
 # ou
-composer create-project laravel/laravel cadastro-assinante --prefer-dist
+composer create-project laravel/laravel editora-virtual --prefer-dist
 ```
 
 ### 4. Testando o projeto criado e visualizando a página inicial
@@ -424,3 +424,4 @@ isto cria uma tendência dos desenvolvedores adicionarem mais dependências para
 **As dependências podem ser imutáveis**: a imutabilidade é uma qualidade bem-vinda.
 Fonte: [CWI Software](https://medium.com/cwi-software/os-benef%C3%ADcios-de-usar-inje%C3%A7%C3%A3o-por-construtor-8cd442884adc)
  
+### 41 - Relacionamentos no Laravel
