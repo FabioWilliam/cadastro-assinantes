@@ -11,12 +11,17 @@
 |
 */
 
-Route::redirect('/', 'assinantes');
-Route::delete('assinantes/batch', 'AssinanteController@batch')->name('assinantes.batch');
-Route::resource('assinantes', 'AssinanteController');
+Route::redirect('/', '/home');
+Auth::routes(['verify' => true]);
 
-Route::delete('assinaturas/batch', 'AssinaturaController@batch')->name('assinaturas.batch');
-Route::resource('assinaturas', 'AssinaturaController');
+Route::delete('assinantes/batch', 'AssinanteController@batch')->name('assinantes.batch')->middleware('auth');
+Route::resource('assinantes', 'AssinanteController')->middleware('verified');
 
-Route::resource('revistas', 'RevistaController');
-Route::get('enviar-email/{id}', 'MailerController@emailManutencao')->name('email.manutencao');
+Route::delete('assinaturas/batch', 'AssinaturaController@batch')->name('assinaturas.batch')->middleware('auth');
+Route::resource('assinaturas', 'AssinaturaController')->middleware('verified');
+
+Route::resource('revistas', 'RevistaController')->middleware('verified');
+Route::get('enviar-email/{id}', 'MailerController@emailManutencao')->name('email.manutencao')->middleware('verified');
+
+
+Route::get('/home', 'HomeController@index')->name('home');

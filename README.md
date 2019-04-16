@@ -425,3 +425,44 @@ isto cria uma tendência dos desenvolvedores adicionarem mais dependências para
 Fonte: [CWI Software](https://medium.com/cwi-software/os-benef%C3%ADcios-de-usar-inje%C3%A7%C3%A3o-por-construtor-8cd442884adc)
  
 ### 41 - Relacionamentos no Laravel
+O Laravel utiliza o relacionamento de forma bem "mágica", bastando dizer a model como é feito o relacionamento com as outras models.
+HasOne - Relacionamento direto One to One 
+```php
+class Assinatura extends Model
+{
+    protected $guarded = [];
+
+    public function revista()
+    {
+        return $this->hasOne('App\Revista', 'id');
+    }
+}
+```
+
+HasMany - Relacionamento de One para Muito, um assinante pode ter muitas assinaturas.
+```php
+class Assinante extends Model
+{
+    protected $guarded = [];
+
+    public function assinaturas()
+    {
+        return $this->hasMany('App\Assinatura');
+    }
+}    
+```
+BelongsTo - Relacionamento "invertido" pertence a algúem.
+```php
+class Assinatura extends Model
+{
+    protected $guarded = [];
+
+    public function assinante()
+    {
+        return $this->belongsTo('App\Assinante', 'assinante_id', 'id');
+    }
+}
+```
+### 42 - 
+
+

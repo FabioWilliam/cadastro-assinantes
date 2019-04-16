@@ -36,9 +36,14 @@
 03/04/19
 * (OK) Tratar o status da Assinatura na index.blade
 * (OK) Criar um Repository para as revistas, alterar o AssinaturasController
-* Estudar o Jquery para consultar o assinante pelo nome no cadastramento da assinatura
-* Implementar a injeção de dependencia nos métodos controler de assinaturas
-* Tratar o Unique no codigo da Revista, (Factory)
-* Tratar a exclusão de um assinante, pode ser que ele tenha uma assinatura atrelada a este assinante neste caso o cliente não pode ser excluido
-* Inibir o campo Valor da Revista na tela de assinatura, trazer o valor quando o usuário escolher uma revista utilizando o campo Revista.
-* 
+* (OK) Estudar o Jquery para consultar o assinante pelo nome no cadastramento da assinatura
+* (OK) Implementar a injeção de dependencia nos métodos controler de assinaturas
+* (OK) Tratar o Unique no codigo da Revista, (Factory)
+* (OK) Tratar a exclusão de um assinante, pode ser que ele tenha uma assinatura atrelada a este assinante neste caso o cliente não pode ser excluido
+* (OK) Inibir o campo Valor da Revista na tela de assinatura, trazer o valor quando o usuário escolher uma revista utilizando o campo Revista.
+* (OK) remover página inicial
+* (OK) colocar página de login como página inicial
+* (OK) traduzir os elementos visuais da página de login
+* (OK) traduzir os elementos visuais da página de cadastro
+* (OK) traduzir as mensagens de validação do cadastro de usuário
+* (OK) fazer funcionar a recuperação de e-mail
