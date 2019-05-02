@@ -1,0 +1,38 @@
+$margin: 80px;
+
+body {
+    padding-top: $margin;
+    padding-bottom: $margin;
+}
+
+.table th, .table td {
+    text-align: center;
+}
+
+form {
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 800px;
+}
+
+.form-list {
+    width: 1140px;
+}
+
+.row {
+    border-bottom: 1px solid #e1e1e1!important;
+    margin-left: 0!important;
+    padding-bottom: 15px;
+}
+
+.form-action .btn {
+    margin-left: 285px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.field-optional {
+    color: #aaa;
+    font-size: 15px;
+    margin-left: 5px;
+}

@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Assinantes</h5>
-                    <p class="card-text">Controle os dados cadastrais</p>
+                    <p class="card-text">Controle dos dados cadastrais dos assinantes</p>
                     <a href="{{ route('assinantes.index') }}" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Assinaturas</h5>
-                        <p class="card-text">Altere as assinaturas dos seus clientes</p>
+                        <p class="card-text">Controle das assinaturas da empresa</p>
                         <a href="{{ route('assinaturas.index') }}" class="btn btn-primary">Acessar</a>
                     </div>
                 </div>

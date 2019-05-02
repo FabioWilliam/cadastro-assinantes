@@ -84,7 +84,23 @@ Route::resource('assinante', 'AssinanteController');
 php artisan make:factory AssinanteFactory -m=Assinante
 ```
 Dica colocar $faker = \Faker\Factory::create('pt_BR'); 
-** traz alguns nomes em portugues
+** traz alguns métodos e nomes em portugues
+métodos importantes da nossa língua
+```php
+$faker->cpf
+$faker->cnpj
+$faker->stateAbbr
+```
+
+É necessário mudar a chamada da Factory 
+usando o pt_BR
+```php
+$factory->define(App\Assinante::class, function () use ($faker) {
+```
+sem o uso do faker brasileiro
+```php
+$factory->define(App\User::class, function (Faker $faker) {    
+```
 
 ### 11. Criação dos mutators e acessors (métodos getFooAttributes e setFooAttributes)
 
@@ -463,6 +479,32 @@ class Assinatura extends Model
     }
 }
 ```
-### 42 - 
+### 42 - Autenticação no Laravel
 
+### 43 - Tratamento multilinguas email Autenticação, verificação de senha
 
+### 44 - Laravel-mix
+pré-requisitos 
+##### Recomenda-se instalar o ultimo pacote do NPM e NodeJs
+
+arquivo basico webpack.mix.js
+```php
+const mix = require('laravel-mix');
+
+mix.js('resources/js/app.js', 'public/js')
+   .sass('resources/sass/app.scss', 'public/css');
+```
+neste exemplo o mix vai `copiar` o arquivo app.js para a pasta public/js, modificando ou não o seu conteúdo.
+As modificações podem ser `minificar` o arquivo
+
+`.sass` -> o arquivo `app.scss` será convertido para app.css utilizando o conceito do Sass
+
+Para o site **Editora Virtual** vamos criar um arquivo `js` e `css` específicos.
+Instalação do Inputmask via npm
+```sh
+npm install inputmask --save
+```
+Instalação do autocomplete via npm
+```sh
+ npm i devbridge-autocomplete
+```
