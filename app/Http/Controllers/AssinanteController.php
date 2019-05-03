@@ -41,6 +41,7 @@ class AssinanteController extends Controller
         }
 
         return view('assinante.index', [
+            'module' => 'assinantes',
             'assinantes' => $assinantes,
             'status' => $status,
         ]);
@@ -58,6 +59,7 @@ class AssinanteController extends Controller
         $tipoLogradouroList = $this->listasRepository->getTipoLogradouroList();
 
         return view('assinante.create', [
+            'module' => 'assinantes',
             'interesses' => $interessesList,
             'estados' => $estadosList,
             'tipos_logradouro' => $tipoLogradouroList,
@@ -110,6 +112,7 @@ class AssinanteController extends Controller
         $tipoLogradouroList = $this->listasRepository->getTipoLogradouroList();
 
         return view('assinante.show', [
+            'module' => 'assinantes',
             'estados' => $estadosList,
             'tipos_logradouro' => $tipoLogradouroList,
             'assinante' => $assinante,
@@ -123,6 +126,7 @@ class AssinanteController extends Controller
         $tipoLogradouroList = $this->listasRepository->getTipoLogradouroList();
 
         return view('assinante.edit', [
+            'module' => 'assinantes',
             'interesses' => $interessesList,
             'estados' => $estadosList,
             'tipos_logradouro' => $tipoLogradouroList,

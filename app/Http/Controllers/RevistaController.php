@@ -26,6 +26,7 @@ class RevistaController extends Controller
         $revistas = $this->revistasRepository->getListagemPaginate();
 
         return view('revista.index', [
+            'module' => 'revistas',
             'revistas' => $revistas
         ]);
     }
@@ -35,6 +36,7 @@ class RevistaController extends Controller
         $assuntoslist = $this->listasRepository->getAssuntosList();
         $vigencialist = $this->listasRepository->getVigenciaList();
         return view('revista.create', [
+            'module' => 'revistas',
             'assuntos' => $assuntoslist,
             'vigencia' => $vigencialist,
         ]);
@@ -68,6 +70,7 @@ class RevistaController extends Controller
         $vigencialist = $this->listasRepository->getVigenciaList();
 
         return view('revista.show', [
+            'module' => 'revistas',
             'assuntos' => $assuntoslist,
             'vigencia' => $vigencialist,
             'revista' => $revista,
@@ -79,6 +82,7 @@ class RevistaController extends Controller
         $assuntoslist = $this->listasRepository->getAssuntosList();
         $vigencialist = $this->listasRepository->getVigenciaList();
         return view('revista.edit', [
+            'module' => 'revistas',
             'assuntos' => $assuntoslist,
             'vigencia' => $vigencialist,
             'revista'  => $revista,

@@ -24,6 +24,7 @@ class AssinaturaController extends Controller
         $assinaturas = Assinatura::orderBy('id', 'DESC')->paginate(10);
 
         return view('assinatura.index', [
+            'module' => 'assinaturas',
             'assinaturas' => $assinaturas,
         ]);
     }
@@ -34,6 +35,7 @@ class AssinaturaController extends Controller
         $revistas = $this->revistasRepository->getRevistas();
 
         return view('assinatura.create', [
+            'module' => 'assinaturas',
             'status' => $statusAssinaturas,
             'revistas' => $revistas,
         ]);
@@ -64,6 +66,7 @@ class AssinaturaController extends Controller
         $revistas = $this->revistasRepository->getRevistas();
 
         return view('assinatura.show', [
+            'module' => 'assinaturas',
             'assinatura' => $assinatura,
             'revistas' => $revistas,
             'status' => $statusAssinaturas,
@@ -77,6 +80,7 @@ class AssinaturaController extends Controller
         $revistas = $this->revistasRepository->getRevistas();
 
         return view('assinatura.edit', [
+            'module' => 'assinaturas',
             'assinatura' => $assinatura,
             'revistas' => $revistas,
             'status' => $statusAssinaturas,

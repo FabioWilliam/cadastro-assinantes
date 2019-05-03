@@ -10,7 +10,7 @@
 
     <title>Sistema de Assinantes</title>
 </head>
-<body>
+<body data-module="{{ $module ?? 'no-module' }}">
     @include('layouts.nav')
 
     <div class="container">
