@@ -1,4 +1,5 @@
 let $ = require('jquery');
+let bootstrap = require('bootstrap');
 let mask = require('inputmask');
 
 class Revistas {

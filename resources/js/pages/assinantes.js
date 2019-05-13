@@ -1,5 +1,6 @@
 let $ = require('jquery');
 let mask = require('inputmask');
+let bootstrap = require('bootstrap');
 
 class Assinantes {
 

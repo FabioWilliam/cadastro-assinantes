@@ -508,3 +508,102 @@ Instalação do autocomplete via npm
 ```sh
  npm i devbridge-autocomplete
 ```
+
+### 46 Trabalhando com módulos no Javasscript
+Para evitarmos que o sistema carregue um unico `.js` com todo o código javascript, utilzaremos a técnica de modularizar as chamadas.
+**Vantagem**: Cada pagina carrega apenas o seu javascript, assim podemos tratar as diretivas do Jquery #id, por página, `#idvalor` pode estar na página de assinaturas e revistas e terem comportamentos diferentes.
+**Desvantagem**: Talves alguns códigos e máscaras devam ser repetidos em mais de um `javascript`
+
+no arquivo app.blade.php 
+```html
+<body data-module="{{ $module ?? 'no-module' }}">
+```
+
+no arquivo `app.js`
+```javascript
+let $   = require('jquery');
+let app = {};
+
+// let popper = require('popper.js');
+// let bootstrap = require('bootstrap');
+
+app['assinantes']  = require('./pages/assinantes');
+app['assinaturas'] = require('./pages/assinaturas');
+app['revistas']    = require('./pages/revistas');
+
+$(document).ready(function() {
+    var module = $('body').data('module');
+
+    if (app[module]) {
+        var currentModule = new app[module](document.body);
+        currentModule.init();
+    } else {
+        console.log("Module '%s' could not be loaded.", module);
+    }
+});
+```
+
+### 47 Implantando o sistema através o Forge
+
+* Assistir Laravel cast - Forge
+* Criar a conta Laravel forge
+* Conectar o forge ao repositório git que será utilizado, pode ser qualquer repositório (github)
+* Entrar no console da Digital Ocean, escolhi esse pela facilidade de se obter o token
+* criar a chave API, copiar o Access Token para ser usado no forge
+* escolher a cloud provedora, (digital ocean no meu caso)
+* colar o token, para permitir que o forge acesse a nuvem e "busque" as máquinas disponíveis.
+* Escolher qual tipo de máquina deverá ser usado para o seu site.
+* Esperar até o forge informar `conexion successful` na página do Servers
+*Navegar até o IP gerado caso encontre "Welcome to nginx!", tudo certo, o servidor está criado o nginx está instalado e configurado.
+
+##### Próximo passo instalar a aplicação.
+
+Em sites details -> Apps -> Install Repository
+Configurar as variáveis de ambiente - Envinroment
+
+```php
+APP_NAME=Laravel
+APP_ENV=production
+APP_KEY=base64:o+9y9ZURZrtIvwQOuJvf2MVbrJnWwFKCkuTBrKjpgo8=
+APP_DEBUG=false
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=forge
+DB_USERNAME=forge
+DB_PASSWORD=p4lC5uGmUsYOu0uarTzo
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1
+
+MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+```
+
+Editar as informações e email e novas chaves que seu projeto possu
+
+*Deploy automático*
+Caso queira fazer o deploy da aplicação toda vez que o github receber um push no master, você precisa configurar o webhook, webhook é uma chamada http que o github faz ao forge informando que houve um atualização em seu repositório.
