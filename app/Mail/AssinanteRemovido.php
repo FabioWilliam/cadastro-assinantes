@@ -30,6 +30,8 @@ class AssinanteRemovido extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.assinante_removido');
+        return $this->from( env('MAIL_FROM_ADDRESS', 'hello@example.com') )
+            ->name(env('MAIL_FROM_NAME', 'Laravel'))
+            ->view('mail.assinante_removido');
     }
 }
