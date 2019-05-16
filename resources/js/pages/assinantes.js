@@ -49,8 +49,9 @@ class Assinantes {
         $(this.body).find('#cep_nao_encontrado').html(data.message);
     }
 
-    showFailError() {
+    showFailError(response) {
         alert('Houve um erro grave na sua aplicação.');
+        alert(response);
     }
 
     changeStatusFilterAssinante() {
