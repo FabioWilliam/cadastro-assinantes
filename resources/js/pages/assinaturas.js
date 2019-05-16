@@ -22,8 +22,9 @@ class Revistas {
     }
 
     prepareAutocomplete() {
+        var service = (window.location.hostname == 'localhost') ? 'http://localhost:8000/api/assinante/':'https://editoravirtual.online/api/assinante';
         $('#nome_assinante').autocomplete({
-            serviceUrl: 'http://localhost:8000/api/assinante/',
+            serviceUrl: service,
             minLength: 1,
             onSelect: function (suggestion) {
                 var idAssinante = suggestion.data;

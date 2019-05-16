@@ -5,8 +5,9 @@ let bootstrap = require('bootstrap');
 class Assinantes {
 
     constructor(body) {
-        this.apiUrl = 'http://localhost:8000';
+        this.apiUrl = (window.location.hostname == 'localhost') ? 'http://localhost:8000':'https:// editoravirtual.online';
         this.body = body;
+        console.log('url =>' + this.apiUrl);
     }
 
     init() {
@@ -51,7 +52,6 @@ class Assinantes {
 
     showFailError(response) {
         alert('Houve um erro grave na sua aplicação.');
-        alert(response);
     }
 
     changeStatusFilterAssinante() {
